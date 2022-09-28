@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Retro Textures/png/BRICK_1A.png" type="Texture" id=2]
+
+[node name="Main" type="Node"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 1026.0
+margin_bottom = 602.0
+texture = ExtResource( 2 )
+stretch_mode = 2
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
