@@ -1,6 +1,6 @@
 extends Area2D
 
-export var player_speed = 100
+export var player_speed = 250
 
 var screen_size
 

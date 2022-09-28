@@ -87,21 +87,22 @@ animations = [ {
 } ]
 
 [sub_resource type="CapsuleShape2D" id=14]
-radius = 9.0
-height = 10.0
+radius = 22.0
+height = 14.0
 
 [node name="Player" type="Area2D"]
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 1, 0 )
+position = Vector2( -1.90735e-06, 0 )
+scale = Vector2( 2.21875, 2.21875 )
 frames = SubResource( 13 )
 animation = "down"
-frame = 2
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 1, 1 )
+position = Vector2( 1, 3 )
 shape = SubResource( 14 )
 __meta__ = {
 "_edit_group_": true
