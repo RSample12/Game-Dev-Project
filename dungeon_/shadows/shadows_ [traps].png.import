@@ -2,11 +2,16 @@
 
 importer="texture"
 type="StreamTexture"
-valid=false
+path="res://.import/shadows_ [traps].png-65c6c75e3f9f2132a9ec17aaaec3cd6e.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://Retro Textures/__MACOSX/._retro-texture-pack.png"
+source_file="res://dungeon_/shadows/shadows_ [traps].png"
+dest_files=[ "res://.import/shadows_ [traps].png-65c6c75e3f9f2132a9ec17aaaec3cd6e.stex" ]
+
 [params]
 
 compress/mode=0
