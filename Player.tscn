@@ -90,7 +90,7 @@ animations = [ {
 radius = 22.0
 height = 14.0
 
-[node name="Player" type="Area2D"]
+[node name="Player" type="KinematicBody2D"]
 scale = Vector2( 0.6, 0.6 )
 script = ExtResource( 2 )
 
