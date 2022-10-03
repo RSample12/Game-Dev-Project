@@ -236,6 +236,7 @@ texture = ExtResource( 2 )
 stretch_mode = 2
 
 [node name="Floor" type="TileMap" parent="."]
+position = Vector2( -1, 0 )
 tile_set = SubResource( 1 )
 format = 1
 
