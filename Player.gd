@@ -1,6 +1,6 @@
 extends Area2D
 
-export var player_speed = 250
+export var player_speed = 200
 
 var screen_size
 
@@ -8,7 +8,11 @@ func _ready():
 	screen_size = get_viewport_rect().size
 	
 func _process(delta):
+	player_speed = 200
+	
 	var velocity = Vector2.ZERO # The player's movement vector.
+	if Input.is_action_pressed("walk"):
+		player_speed = 100
 	if Input.is_action_pressed("move_right"):
 		velocity.x += 1
 		$AnimatedSprite.animation = "right"
