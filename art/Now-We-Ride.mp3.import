@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Now-We-Ride.mp3-45c5546f5d6676ad74ccef440b990921.mp3str"
+
+[deps]
+
+source_file="res://art/Now-We-Ride.mp3"
+dest_files=[ "res://.import/Now-We-Ride.mp3-45c5546f5d6676ad74ccef440b990921.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
