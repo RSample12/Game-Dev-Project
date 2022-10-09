@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://PIPOYA FREE RPG Character Sprites 32x32/Soldier/Soldier 03-3.png" type="Texture" id=1]
+[ext_resource path="res://art/Soldier 03-3.png" type="Texture" id=1]
 [ext_resource path="res://Enemy.gd" type="Script" id=2]
 
 [sub_resource type="AtlasTexture" id=15]
@@ -87,12 +87,13 @@ animations = [ {
 } ]
 
 [sub_resource type="CapsuleShape2D" id=14]
-radius = 22.0
-height = 14.0
+radius = 24.0
+height = 15.3333
 
-[node name="Enemy" type="Area2D"]
+[node name="Enemy" type="KinematicBody2D"]
 scale = Vector2( 0.6, 0.6 )
 script = ExtResource( 2 )
+detect_radius = 100
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( -1.90735e-06, 0 )
@@ -102,8 +103,12 @@ animation = "down"
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 1, 3 )
+position = Vector2( 1, -0.333333 )
 shape = SubResource( 14 )
 __meta__ = {
 "_edit_group_": true
 }
+
+[node name="Visibility" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Visibility"]

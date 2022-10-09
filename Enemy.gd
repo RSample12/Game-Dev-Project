@@ -1,11 +1,26 @@
-extends Area2D
+extends KinematicBody2D
 
 
 var enemy_speed = 100
 onready var pathfollow = get_parent()
 var direction = 1
+export (int) var detect_radius
+var vis_color = Color(.867, .91, .247, .1)
 
-func _process(delta):	
+# pos where raycast hits
+var hit_pos
+
+func _ready():
+	var shape = CircleShape2D.new()
+	shape.radius = detect_radius
+	$Visibility/CollisionShape2D.shape = shape
+	
+func _draw():
+	draw_circle(Vector2(), detect_radius, vis_color)
+	
+func _process(delta):
+	
+	# path follow ai
 	if direction == 1:
 		if pathfollow.unit_offset == 1:
 			$AnimatedSprite.stop()

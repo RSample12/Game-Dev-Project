@@ -3,7 +3,7 @@ extends KinematicBody2D
 export var player_speed = 200
 
 var screen_size
-#export (int) var speed = 100
+
 func _ready():
 	screen_size = get_viewport_rect().size
 	
