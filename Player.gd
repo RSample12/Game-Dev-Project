@@ -1,18 +1,20 @@
 extends KinematicBody2D
 
-export var player_speed = 200
+export (int) var player_speed
 
-var screen_size
-
+var screen_size_x
+var screen_size_y
+#export (int) var speed = 100
 func _ready():
-	screen_size = get_viewport_rect().size
+	screen_size_x = 1024
+	screen_size_y = 1920
 	
 func _process(delta):
-	player_speed = 200
+	player_speed = 150
 	
 	var movement_direction := Vector2.ZERO
 	if Input.is_action_pressed("walk"):
-		player_speed = 100
+		player_speed = 75
 	if Input.is_action_pressed("move_right"):
 		movement_direction.x = 1
 		$AnimatedSprite.animation = "right"
@@ -33,6 +35,6 @@ func _process(delta):
 		
 	movement_direction = movement_direction.normalized()
 	move_and_slide(movement_direction * player_speed)
-	position.x = clamp(position.x, 0, screen_size.x)
-	position.y = clamp(position.y, 0, screen_size.y)
+	position.x = clamp(position.x, 0, screen_size_x)
+	position.y = clamp(position.y, 0, screen_size_y)
 
