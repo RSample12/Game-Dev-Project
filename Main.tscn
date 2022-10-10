@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Retro Textures/png/BRICK_1A.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Main.gd" type="Script" id=5]
 [ext_resource path="res://art/The_Old_Tower_Inn.mp3" type="AudioStream" id=6]
 [ext_resource path="res://art/gameover.wav" type="AudioStream" id=7]
+[ext_resource path="res://HUD.tscn" type="PackedScene" id=8]
 
 [sub_resource type="TileSet" id=1]
 0/name = "GrayTiles.png 0"
@@ -284,18 +285,20 @@ _data = {
 script = ExtResource( 5 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
-margin_right = 1031.0
-margin_bottom = 1922.0
+margin_left = -3.0
+margin_top = -1.0
+margin_right = 1028.0
+margin_bottom = 1921.0
 color = Color( 0.109804, 0.105882, 0.121569, 1 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="TextureRect" type="TextureRect" parent="."]
-margin_left = 94.0
-margin_top = 32.0
-margin_right = 929.0
-margin_bottom = 557.0
+margin_left = 96.0
+margin_top = 33.0
+margin_right = 931.0
+margin_bottom = 558.0
 texture = ExtResource( 2 )
 stretch_mode = 2
 __meta__ = {
@@ -392,3 +395,14 @@ volume_db = -20.0
 
 [node name="Gameover" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
+
+[node name="HUD" parent="." instance=ExtResource( 8 )]
+
+[node name="ScoreTimer" type="Timer" parent="."]
+
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="start_game" from="HUD" to="." method="_on_HUD_start_game"]
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
