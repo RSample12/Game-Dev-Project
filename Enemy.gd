@@ -4,6 +4,8 @@ var enemy_speed = 100
 onready var pathfollow = get_parent()
 var direction = 1
 
+signal end_game
+
 export (int) var detect_radius
 var vis_color = Color(.867, .91, .247, .1)
 
@@ -39,3 +41,4 @@ func _process(delta):
 func _on_Visibility_body_entered(body):
 	if "Player" in body.name:
 		print("dead")
+		emit_signal("end_game")

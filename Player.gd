@@ -8,6 +8,7 @@ var screen_size_y
 func _ready():
 	screen_size_x = 1024
 	screen_size_y = 1920
+	hide()
 	
 func _process(delta):
 	player_speed = 150
@@ -37,4 +38,9 @@ func _process(delta):
 	move_and_slide(movement_direction * player_speed)
 	position.x = clamp(position.x, 0, screen_size_x)
 	position.y = clamp(position.y, 0, screen_size_y)
+	
 
+func start(pos):
+	position = pos
+	show()
+	$CollisionShape2D.disabled = false

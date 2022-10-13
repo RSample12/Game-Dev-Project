@@ -21,7 +21,7 @@ custom_fonts/font = SubResource( 1 )
 text = "0"
 align = 1
 
-[node name="TitleLabel" type="Label" parent="."]
+[node name="MessageLabel" type="Label" parent="."]
 anchor_bottom = 0.034
 margin_left = -49.0
 margin_top = 24.0

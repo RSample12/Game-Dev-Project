@@ -100,7 +100,7 @@ position = Vector2( -1.90735e-06, 0 )
 scale = Vector2( 2.21875, 2.21875 )
 frames = SubResource( 13 )
 animation = "up"
-frame = 2
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -117,4 +117,5 @@ show_behind_parent = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Visibility"]
 show_behind_parent = true
 
+[connection signal="end_game" from="." to="." method="_on_Enemy_end_game"]
 [connection signal="body_entered" from="Visibility" to="." method="_on_Visibility_body_entered"]
