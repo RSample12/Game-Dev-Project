@@ -10,6 +10,7 @@ func _ready():
 func new_game():
 	score = 0
 	get_tree().paused = false
+	$game_over.hide()
 	$Player.start($StartPosition.position)
 	$Music.play()
 	$HUD.update_score(score)
@@ -22,6 +23,7 @@ func new_game():
 func game_over():
 	$ScoreTimer.stop()
 	$Music.stop()
+	$game_over.show()
 	$HUD.show_game_over()
 	$Player.hide()
 	

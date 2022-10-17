@@ -47,3 +47,8 @@ func start(pos):
 	position = pos
 	show()
 	$CollisionShape2D.disabled = false
+	
+
+func _on_Area2D_body_entered(body):
+	if "Walls" in body.name and player_speed != 75:
+		$wall_bump.play()

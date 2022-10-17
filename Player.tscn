@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://PIPOYA FREE RPG Character Sprites 32x32/Male/Male 16-1.png" type="Texture" id=1]
 [ext_resource path="res://Player.gd" type="Script" id=2]
+[ext_resource path="res://art/Collision8-Bit.ogg" type="AudioStream" id=3]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
@@ -90,16 +91,23 @@ animations = [ {
 radius = 22.0
 height = 14.0
 
+[sub_resource type="CapsuleShape2D" id=15]
+radius = 23.3333
+height = 13.3333
+
 [node name="Player" type="KinematicBody2D" groups=["player"]]
 scale = Vector2( 0.6, 0.6 )
 script = ExtResource( 2 )
+
+[node name="wall_bump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( -1.90735e-06, 0 )
 scale = Vector2( 2.21875, 2.21875 )
 frames = SubResource( 13 )
 animation = "down"
-frame = 2
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -117,3 +125,11 @@ limit_right = 1024
 limit_bottom = 1920
 smoothing_enabled = true
 smoothing_speed = 8.0
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 1.66667, 3.33333 )
+shape = SubResource( 15 )
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

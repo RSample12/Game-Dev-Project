@@ -493,7 +493,7 @@ detect_radius = 150
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
-volume_db = -20.0
+volume_db = -15.0
 
 [node name="Gameover" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
@@ -502,6 +502,13 @@ stream = ExtResource( 7 )
 stream = ExtResource( 13 )
 
 [node name="HUD" parent="." instance=ExtResource( 8 )]
+
+[node name="game_over" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 4.0
+margin_bottom = 1321.0
+color = Color( 0, 0, 0, 0.470588 )
 
 [node name="ScoreTimer" type="Timer" parent="."]
 
