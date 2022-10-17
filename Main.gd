@@ -22,7 +22,6 @@ func new_game():
 func game_over():
 	$ScoreTimer.stop()
 	$Music.stop()
-	#$DeathSound.play()
 	$HUD.show_game_over()
 	$Player.hide()
 	
@@ -39,4 +38,10 @@ func _on_HUD_start_game():
 	new_game()
 	
 func _on_Enemy_end_game():
+	$Gameover.play()
 	game_over()
+
+func _on_Sword_treasure_collected():
+	$LevelWon.play()
+	game_over()
+

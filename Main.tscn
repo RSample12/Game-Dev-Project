@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Retro Textures/png/BRICK_1A.png" type="Texture" id=2]
@@ -11,6 +11,8 @@
 [ext_resource path="res://dungeon_/dungeon_/dungeon_.png" type="Texture" id=9]
 [ext_resource path="res://Pause.gd" type="Script" id=10]
 [ext_resource path="res://fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=11]
+[ext_resource path="res://Sword.tscn" type="PackedScene" id=12]
+[ext_resource path="res://art/mixkit-retro-game-notification-212.wav" type="AudioStream" id=13]
 
 [sub_resource type="TileSet" id=1]
 0/name = "GrayTiles.png 0"
@@ -496,12 +498,18 @@ volume_db = -20.0
 [node name="Gameover" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
 
+[node name="LevelWon" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+
 [node name="HUD" parent="." instance=ExtResource( 8 )]
 
 [node name="ScoreTimer" type="Timer" parent="."]
 
 [node name="StartTimer" type="Timer" parent="."]
 wait_time = 2.0
+
+[node name="Sword" parent="." instance=ExtResource( 12 )]
+position = Vector2( 790, 1511 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 100
@@ -572,5 +580,6 @@ Pause/ Unpause: Esc/ P"
 [connection signal="start_game" from="HUD" to="." method="_on_HUD_start_game"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
+[connection signal="treasure_collected" from="Sword" to="." method="_on_Sword_treasure_collected"]
 [connection signal="pressed" from="CanvasLayer/Pause/controls" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Pause/controls" to="CanvasLayer/Pause" method="_on_controls_pressed"]
