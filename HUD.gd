@@ -1,9 +1,7 @@
 extends CanvasLayer
 
 signal start_game
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+
 
 func show_message(text):
 	$MessageLabel.text = text
@@ -16,6 +14,7 @@ func show_game_over():
 	$StartButton.show()
 	$MessageLabel.text = "Castlebreaker"
 	$MessageLabel.show()
+	get_tree().paused = true
 	
 func update_score(score):
 	$ScoreLabel.text = str(score)

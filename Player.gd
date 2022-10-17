@@ -16,6 +16,8 @@ func _process(delta):
 	var movement_direction := Vector2.ZERO
 	if Input.is_action_pressed("walk"):
 		player_speed = 75
+		
+	# Player Anim
 	if Input.is_action_pressed("move_right"):
 		movement_direction.x = 1
 		$AnimatedSprite.animation = "right"
@@ -29,6 +31,7 @@ func _process(delta):
 		movement_direction.y = -1
 		$AnimatedSprite.animation = "up"
 	
+	# Plays animation when player moves
 	if movement_direction.length() > 0:
 		$AnimatedSprite.play()
 	else:
