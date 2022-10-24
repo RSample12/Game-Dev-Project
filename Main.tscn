@@ -1,18 +1,17 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Retro Textures/png/BRICK_1A.png" type="Texture" id=2]
 [ext_resource path="res://Tilesets/GrayTiles.png" type="Texture" id=3]
 [ext_resource path="res://Enemy.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Main.gd" type="Script" id=5]
-[ext_resource path="res://art/The_Old_Tower_Inn.mp3" type="AudioStream" id=6]
+[ext_resource path="res://Pause.tscn" type="PackedScene" id=6]
 [ext_resource path="res://art/gameover.wav" type="AudioStream" id=7]
 [ext_resource path="res://HUD.tscn" type="PackedScene" id=8]
 [ext_resource path="res://dungeon_/dungeon_/dungeon_.png" type="Texture" id=9]
-[ext_resource path="res://Pause.gd" type="Script" id=10]
-[ext_resource path="res://fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=11]
 [ext_resource path="res://Sword.tscn" type="PackedScene" id=12]
 [ext_resource path="res://art/mixkit-retro-game-notification-212.wav" type="AudioStream" id=13]
+[ext_resource path="res://art/Now-We-Ride.mp3" type="AudioStream" id=14]
 
 [sub_resource type="TileSet" id=1]
 0/name = "GrayTiles.png 0"
@@ -304,6 +303,57 @@ points = PoolVector2Array( 9.96097, 9.95448, 9.96097, 0.587158, 22.2354, 0.74867
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 12/z_index = 0
+13/name = "GrayTiles.png 13"
+13/texture = ExtResource( 3 )
+13/tex_offset = Vector2( 0, 0 )
+13/modulate = Color( 1, 1, 1, 1 )
+13/region = Rect2( 128, 96, 32, 32 )
+13/tile_mode = 0
+13/occluder_offset = Vector2( 0, 0 )
+13/navigation_offset = Vector2( 0, 0 )
+13/shape_offset = Vector2( 0, 0 )
+13/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+13/shape_one_way = false
+13/shape_one_way_margin = 0.0
+13/shapes = [  ]
+13/z_index = 0
+14/name = "GrayTiles.png 14"
+14/texture = ExtResource( 3 )
+14/tex_offset = Vector2( 0, 0 )
+14/modulate = Color( 1, 1, 1, 1 )
+14/region = Rect2( 160, 64, 32, 32 )
+14/tile_mode = 1
+14/autotile/bitmask_mode = 0
+14/autotile/bitmask_flags = [  ]
+14/autotile/icon_coordinate = Vector2( 0, 0 )
+14/autotile/tile_size = Vector2( 32, 32 )
+14/autotile/spacing = 0
+14/autotile/occluder_map = [  ]
+14/autotile/navpoly_map = [  ]
+14/autotile/priority_map = [  ]
+14/autotile/z_index_map = [  ]
+14/occluder_offset = Vector2( 0, 0 )
+14/navigation_offset = Vector2( 0, 0 )
+14/shape_offset = Vector2( 0, 0 )
+14/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+14/shape_one_way = false
+14/shape_one_way_margin = 0.0
+14/shapes = [  ]
+14/z_index = 0
+15/name = "GrayTiles.png 15"
+15/texture = ExtResource( 3 )
+15/tex_offset = Vector2( 0, 0 )
+15/modulate = Color( 1, 1, 1, 1 )
+15/region = Rect2( 32, 256, 32, 32 )
+15/tile_mode = 0
+15/occluder_offset = Vector2( 0, 0 )
+15/navigation_offset = Vector2( 0, 0 )
+15/shape_offset = Vector2( 0, 0 )
+15/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+15/shape_one_way = false
+15/shape_one_way_margin = 0.0
+15/shapes = [  ]
+15/z_index = 0
 
 [sub_resource type="TileSet" id=14]
 0/name = "RedCarpet"
@@ -368,29 +418,14 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 511, 1403, 0, 0, 0, 0, 514, 593 )
 }
 
-[sub_resource type="DynamicFontData" id=16]
-font_path = "res://fonts/Xolonium-Regular.ttf"
-
-[sub_resource type="DynamicFont" id=17]
-size = 24
-font_data = SubResource( 16 )
-
-[sub_resource type="DynamicFont" id=19]
-size = 24
-font_data = ExtResource( 11 )
-
-[sub_resource type="DynamicFont" id=18]
-size = 18
-font_data = ExtResource( 11 )
-
 [node name="Main" type="Node"]
 script = ExtResource( 5 )
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="bg" type="ColorRect" parent="."]
 margin_left = -3.0
 margin_top = -1.0
-margin_right = 1028.0
-margin_bottom = 1921.0
+margin_right = 1917.0
+margin_bottom = 1919.0
 color = Color( 0.168627, 0.168627, 0.168627, 1 )
 __meta__ = {
 "_edit_group_": true
@@ -464,6 +499,7 @@ format = 1
 tile_data = PoolIntArray( 1, 3, 0, 2, 6, 0, 3, 6, 0, 4, 6, 0, 5, 6, 0, 6, 6, 0, 7, 6, 0, 8, 6, 0, 9, 6, 0, 10, 6, 0, 11, 6, 0, 12, 8, 0, 13, 12, 0, 14, 2, 0, 65537, 7, 0, 65548, 7, 0, 65550, 7, 0, 131073, 7, 0, 131086, 7, 0, 196609, 7, 0, 196620, 4, 0, 196621, 6, 0, 196622, 9, 0, 262145, 7, 0, 262158, 7, 0, 327681, 7, 0, 327694, 7, 0, 393217, 7, 0, 393230, 7, 0, 458753, 7, 0, 458766, 7, 0, 524289, 4, 0, 524290, 6, 0, 524291, 6, 0, 524292, 6, 0, 524293, 6, 0, 524294, 2, 0, 524297, 3, 0, 524298, 6, 0, 524299, 6, 0, 524300, 6, 0, 524301, 6, 0, 524302, 5, 0, 589830, 7, 0, 589833, 7, 0, 655366, 7, 0, 655369, 7, 0, 720901, 3, 0, 720902, 5, 0, 720905, 4, 0, 720906, 2, 0, 786437, 7, 0, 786442, 7, 0, 851973, 4, 0, 851974, 2, 0, 851977, 3, 0, 851978, 5, 0, 917510, 7, 0, 917513, 7, 0, 983046, 7, 0, 983049, 7, 0, 1048582, 7, 0, 1048585, 7, 0, 1114117, 3, 0, 1114118, 5, 0, 1114121, 4, 0, 1114122, 2, 0, 1179653, 7, 0, 1179658, 7, 0, 1245189, 4, 0, 1245190, 2, 0, 1245193, 3, 0, 1245194, 5, 0, 1310726, 7, 0, 1310729, 7, 0, 1376262, 7, 0, 1376265, 7, 0, 1441794, 3, 0, 1441795, 6, 0, 1441796, 6, 0, 1441797, 6, 0, 1441798, 5, 0, 1441801, 4, 0, 1441802, 6, 0, 1441803, 6, 0, 1441804, 6, 0, 1441805, 2, 0, 1507330, 7, 0, 1507341, 7, 0, 1572866, 7, 0, 1572877, 7, 0, 1638402, 7, 0, 1638413, 7, 0, 1703938, 7, 0, 1703949, 7, 0, 1769474, 7, 0, 1769485, 7, 0, 1835010, 4, 0, 1835011, 6, 0, 1835012, 6, 0, 1835013, 6, 0, 1835014, 6, 0, 1835015, 6, 0, 1835016, 6, 0, 1835017, 6, 0, 1835018, 6, 0, 1835019, 6, 0, 1835020, 6, 0, 1835021, 5, 0 )
 
 [node name="Decor" type="TileMap" parent="."]
+visible = false
 scale = Vector2( 2, 2 )
 tile_set = SubResource( 14 )
 cell_size = Vector2( 32, 32 )
@@ -472,12 +508,6 @@ tile_data = PoolIntArray( 131076, 0, 0, 131077, 0, 0, 131078, 0, 0, 131079, 0, 0
 
 [node name="StartPosition" type="Position2D" parent="."]
 position = Vector2( 864, 98 )
-
-[node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 864, 100 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="Path2D" type="Path2D" parent="."]
 position = Vector2( 2, 0 )
@@ -491,12 +521,22 @@ loop = false
 [node name="Enemy" parent="Path2D/PathFollow2D" instance=ExtResource( 4 )]
 detect_radius = 150
 
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 864, 100 )
+__meta__ = {
+"_edit_group_": true
+}
+
 [node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 6 )
+stream = ExtResource( 14 )
 volume_db = -15.0
+
+[node name="start_music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
 
 [node name="Gameover" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
+volume_db = -5.0
 
 [node name="LevelWon" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 13 )
@@ -506,8 +546,8 @@ stream = ExtResource( 13 )
 [node name="game_over" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 4.0
-margin_bottom = 1321.0
+margin_right = 896.0
+margin_bottom = 1320.0
 color = Color( 0, 0, 0, 0.470588 )
 
 [node name="ScoreTimer" type="Timer" parent="."]
@@ -518,75 +558,10 @@ wait_time = 2.0
 [node name="Sword" parent="." instance=ExtResource( 12 )]
 position = Vector2( 790, 1511 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 100
-
-[node name="Pause" type="Control" parent="CanvasLayer"]
-pause_mode = 2
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-script = ExtResource( 10 )
-
-[node name="BlackOverlay" type="ColorRect" parent="CanvasLayer/Pause"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0.352941 )
-
-[node name="BlackOverlay2" type="ColorRect" parent="CanvasLayer/Pause"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -150.0
-margin_top = -88.0
-margin_right = 150.0
-margin_bottom = 88.0
-color = Color( 0, 0, 0, 0.352941 )
-
-[node name="controls" type="Button" parent="CanvasLayer/Pause"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -133.5
-margin_top = -72.0
-margin_right = 133.5
-margin_bottom = -36.0
-custom_fonts/font = SubResource( 17 )
-text = "Controls"
-
-[node name="Paused" type="Label" parent="CanvasLayer/Pause"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -50.0
-margin_top = -121.0
-margin_right = 50.0
-margin_bottom = -91.0
-custom_fonts/font = SubResource( 19 )
-text = "Paused"
-
-[node name="control_screen" type="Label" parent="CanvasLayer/Pause"]
-visible = false
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -127.0
-margin_top = -75.0
-margin_right = 127.0
-margin_bottom = 21.0
-custom_fonts/font = SubResource( 18 )
-text = "Movement: WASD
-Sneak/ Walk: Shift
-Pause/ Unpause: Esc/ P"
+[node name="CanvasLayer" parent="." instance=ExtResource( 6 )]
 
 [connection signal="end_game" from="Path2D/PathFollow2D/Enemy" to="." method="_on_Enemy_end_game"]
 [connection signal="start_game" from="HUD" to="." method="_on_HUD_start_game"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
 [connection signal="treasure_collected" from="Sword" to="." method="_on_Sword_treasure_collected"]
-[connection signal="pressed" from="CanvasLayer/Pause/controls" to="." method="_on_Button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Pause/controls" to="CanvasLayer/Pause" method="_on_controls_pressed"]
