@@ -40,5 +40,5 @@ func _process(delta):
 
 func _on_Visibility_body_entered(body):
 	if "Player" in body.name:
-		print("dead")
+		pathfollow.unit_offset = 0
 		emit_signal("end_game")

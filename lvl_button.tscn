@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://lvl_button.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 48
+font_data = ExtResource( 1 )
+
+[node name="lvl_button" type="Button"]
+margin_right = 614.0
+margin_bottom = 93.0
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 1 )
+text = "Tutorial"
+script = ExtResource( 2 )
+
+[connection signal="mouse_entered" from="." to="." method="_on_lvl_button_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_lvl_button_mouse_exited"]
+[connection signal="pressed" from="." to="." method="_on_lvl_button_pressed"]
