@@ -15,6 +15,7 @@ func new_game():
 	$Music.play()
 	$HUD.update_score(score)
 	$HUD.show_message("")
+	$HUD/instructions.hide()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

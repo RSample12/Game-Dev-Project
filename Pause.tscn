@@ -83,4 +83,17 @@ text = "Movement: WASD
 Sneak/ Walk: Shift
 Pause/ Unpause: Esc/ P"
 
+[node name="back_button" type="Button" parent="Pause"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -51.0
+margin_top = 59.0
+margin_right = 51.0
+margin_bottom = 79.0
+text = "Back"
+
 [connection signal="pressed" from="Pause/controls" to="Pause" method="_on_controls_pressed"]
+[connection signal="pressed" from="Pause/back_button" to="Pause" method="_on_back_button_pressed"]

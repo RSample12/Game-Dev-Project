@@ -9,4 +9,10 @@ func _input(event):
 func _on_controls_pressed():
 	$controls.hide()
 	$control_screen.show()
+	$back_button.show()
 	
+
+func _on_back_button_pressed():
+	$controls.show()
+	$control_screen.hide()
+	$back_button.hide()
