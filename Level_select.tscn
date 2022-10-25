@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://lvl_button.tscn" type="PackedScene" id=2]
@@ -6,9 +6,63 @@
 [ext_resource path="res://Level_select.gd" type="Script" id=4]
 [ext_resource path="res://art/The_Old_Tower_Inn.mp3" type="AudioStream" id=5]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=5]
 size = 48
 font_data = ExtResource( 1 )
+
+[sub_resource type="GDScript" id=6]
+script/source = "extends Button
+
+export(PackedScene) var scene
+
+#var original_size = $lvl_button.scale
+#var grow_size = Vector2(1.1, 1.1)
+
+
+\"\"\"func _on_lvl_button_mouse_entered():
+	pass # Replace with function body.
+
+
+func _on_lvl_button_mouse_exited():
+	pass # Replace with function body.
+	
+func grow_btn(end_size: Vector2, duration: float):
+	var tween = create_tween().set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(self, 'scale', end_size, duration)\"\"\"
+
+
+func _on_lvl_button_pressed():
+	get_tree().change_scene_to(scene)
+"
+
+[sub_resource type="DynamicFont" id=7]
+size = 48
+font_data = ExtResource( 1 )
+
+[sub_resource type="GDScript" id=8]
+script/source = "extends Button
+
+export(PackedScene) var scene
+
+#var original_size = $lvl_button.scale
+#var grow_size = Vector2(1.1, 1.1)
+
+
+\"\"\"func _on_lvl_button_mouse_entered():
+	pass # Replace with function body.
+
+
+func _on_lvl_button_mouse_exited():
+	pass # Replace with function body.
+	
+func grow_btn(end_size: Vector2, duration: float):
+	var tween = create_tween().set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(self, 'scale', end_size, duration)\"\"\"
+
+
+func _on_lvl_button_pressed():
+	get_tree().change_scene_to(scene)
+"
 
 [sub_resource type="DynamicFontData" id=3]
 font_path = "res://fonts/Xolonium-Regular.ttf"
@@ -63,19 +117,21 @@ margin_right = 482.0
 margin_bottom = 69.0
 scene = ExtResource( 3 )
 
-[node name="level1" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Level1" parent="MarginContainer/VBoxContainer" instance=ExtResource( 2 )]
 margin_top = 94.0
 margin_right = 482.0
 margin_bottom = 164.0
-size_flags_vertical = 3
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 5 )
 text = "Level 1"
+script = SubResource( 6 )
 
-[node name="Button3" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Level2" parent="MarginContainer/VBoxContainer" instance=ExtResource( 2 )]
 margin_top = 189.0
 margin_right = 482.0
 margin_bottom = 259.0
-size_flags_vertical = 3
+custom_fonts/font = SubResource( 7 )
+text = "Level 2"
+script = SubResource( 8 )
 
 [node name="castlebreaker" type="Label" parent="."]
 anchor_left = 0.5
@@ -93,4 +149,5 @@ align = 1
 valign = 1
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/tutorial" to="." method="_on_tutorial_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/level1" to="." method="_on_level1_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Level1" to="." method="_on_tutorial_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Level2" to="." method="_on_tutorial_pressed"]
