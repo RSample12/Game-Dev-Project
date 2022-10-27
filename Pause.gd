@@ -10,9 +10,15 @@ func _on_controls_pressed():
 	$controls.hide()
 	$control_screen.show()
 	$back_button.show()
+	$exit.hide()
 	
 
 func _on_back_button_pressed():
 	$controls.show()
 	$control_screen.hide()
 	$back_button.hide()
+	$exit.show()
+
+
+func _on_exit_pressed():
+	get_tree().change_scene("res://Level_select.tscn")

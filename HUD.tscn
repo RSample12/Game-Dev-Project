@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://HUD.gd" type="Script" id=1]
 [ext_resource path="res://fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=2]
@@ -10,10 +10,6 @@ font_data = ExtResource( 2 )
 [sub_resource type="DynamicFont" id=2]
 size = 50
 outline_size = 2
-font_data = ExtResource( 2 )
-
-[sub_resource type="DynamicFont" id=4]
-size = 25
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=3]
@@ -42,23 +38,7 @@ margin_bottom = -17.0
 input_pass_on_modal_close_click = false
 custom_colors/font_color = Color( 0.00784314, 0.101961, 0.247059, 1 )
 custom_fonts/font = SubResource( 2 )
-text = "Tutorial"
-align = 1
-
-[node name="instructions" type="Label" parent="."]
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_top = 57.0
-margin_bottom = 118.0
-input_pass_on_modal_close_click = false
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_fonts/font = SubResource( 4 )
-text = "Make your way through the 
-castle to steal the treasure!
-Be careful to avoid the guards on patrol.
-
-Press ESC or P for controls"
+text = "Castlebreaker"
 align = 1
 
 [node name="StartButton" type="Button" parent="."]

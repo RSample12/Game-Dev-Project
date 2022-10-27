@@ -6,16 +6,14 @@ var screen_size_x
 var screen_size_y
 #export (int) var speed = 100
 func _ready():
-	screen_size_x = 1024
-	screen_size_y = 1920
 	hide()
 	
 func _process(delta):
-	player_speed = 150
+	player_speed = 125
 	
 	var movement_direction := Vector2.ZERO
 	if Input.is_action_pressed("walk"):
-		player_speed = 75
+		player_speed = 60
 		
 	# Player Anim
 	if Input.is_action_pressed("move_right"):
@@ -39,8 +37,8 @@ func _process(delta):
 		
 	movement_direction = movement_direction.normalized()
 	move_and_slide(movement_direction * player_speed)
-	position.x = clamp(position.x, 0, screen_size_x)
-	position.y = clamp(position.y, 0, screen_size_y)
+	#position.x = clamp(position.x, 0, screen_size_x)
+	#position.y = clamp(position.y, 0, screen_size_y)
 	
 
 func start(pos):
@@ -52,3 +50,4 @@ func start(pos):
 func _on_Area2D_body_entered(body):
 	if "Walls" in body.name and player_speed != 75:
 		$wall_bump.play()
+		
