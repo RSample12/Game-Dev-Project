@@ -48,3 +48,11 @@ func _on_Sword_treasure_collected():
 	$LevelWon.play()
 	game_over()
 
+func _on_Diamond_jewel_collected():
+	$LevelWon.play()
+	game_over()
+
+
+
+func _on_Diamond_body_entered(body):
+	pass # Replace with function body.
