@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Retro Textures/png/BRICK_1A.png" type="Texture" id=2]
@@ -415,17 +415,127 @@ points = PoolVector2Array( 9.96097, 9.95448, 9.96097, 0.587158, 22.2354, 0.74867
 
 [sub_resource type="Curve2D" id=2]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 511, 1403, 0, 0, 0, 0, 514, 593 )
+"points": PoolVector2Array( 0, 0, 0, 0, 1246, 1337, 0, 0, 0, 0, 1246, 352 )
+}
+
+[sub_resource type="Curve2D" id=16]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 553, 1638, 0, 0, 0, 0, 1179, 1639 )
+}
+
+[sub_resource type="GDScript" id=17]
+script/source = "extends KinematicBody2D
+
+var enemy_speed = 100
+onready var pathfollow = get_parent()
+var direction = 1
+
+# 0: loop, 1: linear
+export var enemy_type = 0
+# 0: up, 1: down, 2: left, 3: right
+export var start_anim = 0
+var start = true
+
+signal end_game
+
+export (int) var detect_radius
+var vis_color = Color(.867, .91, .247, .1)
+
+func _ready():
+	if start:
+		start_anim()
+		start = false
+	var shape = CircleShape2D.new()
+	shape.radius = detect_radius
+	$Visibility/CollisionShape2D.shape = shape
+	
+func _draw():
+	draw_circle(Vector2(), detect_radius, vis_color)
+
+func _process(delta):
+	
+	if direction == 1:
+		if pathfollow.unit_offset == 1:
+			$AnimatedSprite.stop()
+			yield(get_tree().create_timer(3), \"timeout\")
+			get_anim($AnimatedSprite.animation)
+			$AnimatedSprite.play()
+			direction = 0
+		else:
+			pathfollow.offset += enemy_speed * delta
+	else:
+		if pathfollow.unit_offset == 0:
+			$AnimatedSprite.stop()
+			yield(get_tree().create_timer(3), \"timeout\")
+			get_anim($AnimatedSprite.animation)
+			$AnimatedSprite.play()
+			direction = 1
+		else:
+			pathfollow.offset -= enemy_speed * delta
+			
+
+func _on_Visibility_body_entered(body):
+	if \"Player\" in body.name:
+		pathfollow.unit_offset = 0
+		emit_signal(\"end_game\")
+		
+func start_anim():
+	if start_anim == 0:
+		$AnimatedSprite.animation = \"up\"
+	elif start_anim == 1:
+		$AnimatedSprite.animation = \"down\"
+	elif start_anim == 2:
+		$AnimatedSprite.animation = \"left\"
+	elif start_anim == 3:
+		$AnimatedSprite.animation = \"right\"
+		
+func get_anim(animation):
+	if animation == \"up\":
+		if pathfollow.unit_offset == 1 or pathfollow.unit_offset == 0:
+			$AnimatedSprite.animation = \"down\"
+	elif animation == \"down\":
+		if pathfollow.unit_offset == 1 or pathfollow.unit_offset == 0:
+			$AnimatedSprite.animation = \"up\"
+	elif animation == \"left\":
+		if pathfollow.unit_offset == 1 or pathfollow.unit_offset == 0:
+			$AnimatedSprite.animation = \"right\"
+	elif animation == \"right\":
+		if pathfollow.unit_offset == 1 or pathfollow.unit_offset == 0:
+			$AnimatedSprite.animation = \"left\" 
+"
+
+[sub_resource type="Curve2D" id=18]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 477, 1579, 0, 0, 0, 0, 473, 348 )
+}
+
+[sub_resource type="Curve2D" id=19]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -71, 1784, 0, 0, 0, 0, 1107, 1784 )
+}
+
+[sub_resource type="Curve2D" id=20]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 1102, 1952, 0, 0, 0, 0, -72, 1952 )
+}
+
+[sub_resource type="Curve2D" id=21]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -256, 1685, 0, 0, 0, 0, -255, 2096, 0, 0, 0, 0, 350, 2098 )
+}
+
+[sub_resource type="Curve2D" id=22]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 1187, 1475, 0, 0, 0, 0, 1187, 2095, 0, 0, 0, 0, 453, 2094 )
 }
 
 [node name="Main" type="Node"]
 script = ExtResource( 5 )
 
 [node name="bg" type="ColorRect" parent="."]
-margin_left = -3.0
-margin_top = -1.0
-margin_right = 1917.0
-margin_bottom = 1919.0
+margin_left = -388.0
+margin_right = 1556.0
+margin_bottom = 2345.0
 color = Color( 0.168627, 0.168627, 0.168627, 1 )
 __meta__ = {
 "_edit_group_": true
@@ -543,23 +653,108 @@ tile_data = PoolIntArray( 131076, 0, 0, 131077, 0, 0, 131078, 0, 0, 131079, 0, 0
 [node name="StartPosition" type="Position2D" parent="."]
 position = Vector2( 864, 98 )
 
-[node name="Path2D" type="Path2D" parent="."]
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Path2D" type="Path2D" parent="Enemies"]
 position = Vector2( 2, 0 )
 curve = SubResource( 2 )
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2( 511, 1403 )
+[node name="PathFollow2D" type="PathFollow2D" parent="Enemies/Path2D"]
+position = Vector2( 1244, 1576 )
 rotate = false
 loop = false
 
-[node name="Enemy" parent="Path2D/PathFollow2D" instance=ExtResource( 4 )]
+[node name="Enemy" parent="Enemies/Path2D/PathFollow2D" instance=ExtResource( 4 )]
+detect_radius = 125
+
+[node name="Path2D2" type="Path2D" parent="Enemies"]
+position = Vector2( 4, 0 )
+curve = SubResource( 16 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Enemies/Path2D2"]
+position = Vector2( 553, 1638 )
+rotate = false
+loop = false
+
+[node name="Enemy" parent="Enemies/Path2D2/PathFollow2D" instance=ExtResource( 4 )]
+script = SubResource( 17 )
+start_anim = 3
+detect_radius = 125
+
+[node name="Path2D3" type="Path2D" parent="Enemies"]
+position = Vector2( 8, 0 )
+curve = SubResource( 18 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Enemies/Path2D3"]
+position = Vector2( 477, 1579 )
+rotate = false
+loop = false
+
+[node name="Enemy" parent="Enemies/Path2D3/PathFollow2D" instance=ExtResource( 4 )]
+script = SubResource( 17 )
+detect_radius = 125
+
+[node name="Path2D4" type="Path2D" parent="Enemies"]
+position = Vector2( 8, 0 )
+curve = SubResource( 19 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Enemies/Path2D4"]
+position = Vector2( -71, 1784 )
+rotate = false
+loop = false
+
+[node name="Enemy" parent="Enemies/Path2D4/PathFollow2D" instance=ExtResource( 4 )]
+script = SubResource( 17 )
+start_anim = 3
 detect_radius = 150
+
+[node name="Path2D5" type="Path2D" parent="Enemies"]
+position = Vector2( 16, 0 )
+curve = SubResource( 20 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Enemies/Path2D5"]
+position = Vector2( 1102, 1952 )
+rotate = false
+loop = false
+
+[node name="Enemy" parent="Enemies/Path2D5/PathFollow2D" instance=ExtResource( 4 )]
+script = SubResource( 17 )
+start_anim = 2
+detect_radius = 150
+
+[node name="Path2D6" type="Path2D" parent="Enemies"]
+position = Vector2( 32, 0 )
+curve = SubResource( 21 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Enemies/Path2D6"]
+position = Vector2( -256, 1685 )
+rotate = false
+loop = false
+
+[node name="Enemy6" parent="Enemies/Path2D6/PathFollow2D" instance=ExtResource( 4 )]
+start_anim = 1
+detect_radius = 125
+
+[node name="Path2D7" type="Path2D" parent="Enemies"]
+position = Vector2( 64, 0 )
+curve = SubResource( 22 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Enemies/Path2D7"]
+position = Vector2( 1187, 1475 )
+rotate = false
+loop = false
+
+[node name="Enemy7" parent="Enemies/Path2D7/PathFollow2D" instance=ExtResource( 4 )]
+start_anim = 1
+detect_radius = 125
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 864, 100 )
 __meta__ = {
 "_edit_group_": true
 }
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 14 )
@@ -580,9 +775,18 @@ stream = ExtResource( 13 )
 [node name="game_over" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 896.0
-margin_bottom = 1320.0
+margin_left = -390.0
+margin_right = 540.0
+margin_bottom = 1748.0
 color = Color( 0, 0, 0, 0.470588 )
+
+[node name="nighttime" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -390.0
+margin_right = 554.0
+margin_bottom = 1758.0
+color = Color( 0.0901961, 0.0196078, 0.180392, 0.352941 )
 
 [node name="ScoreTimer" type="Timer" parent="."]
 
@@ -594,7 +798,11 @@ position = Vector2( 850, 500 )
 
 [node name="CanvasLayer" parent="." instance=ExtResource( 6 )]
 
-[connection signal="end_game" from="Path2D/PathFollow2D/Enemy" to="." method="_on_Enemy_end_game"]
+[connection signal="end_game" from="Enemies/Path2D/PathFollow2D/Enemy" to="." method="_on_Enemy_end_game"]
+[connection signal="end_game" from="Enemies/Path2D2/PathFollow2D/Enemy" to="." method="_on_Enemy_end_game"]
+[connection signal="end_game" from="Enemies/Path2D3/PathFollow2D/Enemy" to="." method="_on_Enemy_end_game"]
+[connection signal="end_game" from="Enemies/Path2D4/PathFollow2D/Enemy" to="." method="_on_Enemy_end_game"]
+[connection signal="end_game" from="Enemies/Path2D5/PathFollow2D/Enemy" to="." method="_on_Enemy_end_game"]
 [connection signal="start_game" from="HUD" to="." method="_on_HUD_start_game"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]

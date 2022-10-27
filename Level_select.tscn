@@ -1,10 +1,13 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://lvl_button.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Main.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Level_select.gd" type="Script" id=4]
 [ext_resource path="res://art/The_Old_Tower_Inn.mp3" type="AudioStream" id=5]
+[ext_resource path="res://Level1.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Enemy.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Retro Textures/png/BRICK_1A.png" type="Texture" id=8]
 
 [sub_resource type="DynamicFont" id=5]
 size = 48
@@ -71,6 +74,11 @@ font_path = "res://fonts/Xolonium-Regular.ttf"
 size = 72
 font_data = SubResource( 3 )
 
+[sub_resource type="Curve2D" id=9]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 1277, 110, 0, 0, 0, 0, -181, 108 )
+}
+
 [node name="Level_select" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -80,10 +88,11 @@ script = ExtResource( 4 )
 stream = ExtResource( 5 )
 volume_db = -15.0
 
-[node name="bg" type="ColorRect" parent="."]
+[node name="bg" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.313726, 0.313726, 0.317647, 1 )
+texture = ExtResource( 8 )
+stretch_mode = 2
 
 [node name="blk_box" type="ColorRect" parent="."]
 anchor_left = 0.5
@@ -95,6 +104,17 @@ margin_top = -88.5
 margin_right = 285.5
 margin_bottom = 244.5
 color = Color( 0, 0, 0, 0.352941 )
+
+[node name="nighttime" type="ColorRect" parent="blk_box"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -520.5
+margin_top = -381.5
+margin_right = 523.5
+margin_bottom = 231.5
+color = Color( 0.0901961, 0.0196078, 0.180392, 0.352941 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_left = 0.5
@@ -124,6 +144,7 @@ margin_bottom = 164.0
 custom_fonts/font = SubResource( 5 )
 text = "Level 1"
 script = SubResource( 6 )
+scene = ExtResource( 6 )
 
 [node name="Level2" parent="MarginContainer/VBoxContainer" instance=ExtResource( 2 )]
 margin_top = 189.0
@@ -147,6 +168,19 @@ custom_fonts/font = SubResource( 4 )
 text = "Castlebreaker"
 align = 1
 valign = 1
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2( 2, 0 )
+curve = SubResource( 9 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2( 1277, 110 )
+rotate = false
+loop = false
+
+[node name="Enemy" parent="Path2D/PathFollow2D" instance=ExtResource( 7 )]
+start_anim = 2
+detect_radius = 150
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/tutorial" to="." method="_on_tutorial_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Level1" to="." method="_on_tutorial_pressed"]

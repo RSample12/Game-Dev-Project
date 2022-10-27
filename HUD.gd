@@ -15,6 +15,7 @@ func show_game_over():
 	$MessageLabel.text = "Castlebreaker"
 	$MessageLabel.show()
 	get_tree().paused = true
+	get_tree().reload_current_scene()
 	
 func update_score(score):
 	$ScoreLabel.text = str(score)
