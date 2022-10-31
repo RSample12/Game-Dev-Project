@@ -1,0 +1,71 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Textbox.gd" type="Script" id=1]
+[ext_resource path="res://fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 24
+outline_size = 2
+outline_color = Color( 0.109804, 0.109804, 0.109804, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+font_data = ExtResource( 2 )
+
+[node name="canvas_layer" type="CanvasLayer"]
+
+[node name="Textbox" type="ColorRect" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -278.0
+margin_top = -134.0
+margin_right = 278.0
+margin_bottom = -19.0
+color = Color( 0.168627, 0.168627, 0.168627, 1 )
+script = ExtResource( 1 )
+
+[node name="box" type="ColorRect" parent="Textbox"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -265.0
+margin_top = -103.0
+margin_right = 265.0
+margin_bottom = -11.0
+color = Color( 0.223529, 0.223529, 0.223529, 1 )
+
+[node name="Name" type="RichTextLabel" parent="Textbox"]
+margin_left = 22.0
+margin_top = 12.0
+margin_right = 158.0
+margin_bottom = 52.0
+custom_fonts/normal_font = SubResource( 1 )
+text = "Name"
+
+[node name="Text" type="RichTextLabel" parent="Textbox"]
+margin_left = 23.0
+margin_top = 43.0
+margin_right = 531.0
+margin_bottom = 98.0
+custom_fonts/normal_font = SubResource( 2 )
+text = "Text"
+
+[node name="Timer" type="Timer" parent="Textbox"]
+
+[node name="Label" type="Label" parent="Textbox"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -142.0
+margin_top = -2.0
+margin_right = 142.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 3 )
+text = "press enter to navigate the dialog."

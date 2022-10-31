@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Retro Textures/png/BRICK_1A.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://HUD.tscn" type="PackedScene" id=8]
 [ext_resource path="res://dungeon_/dungeon_/dungeon_.png" type="Texture" id=9]
 [ext_resource path="res://Diamond.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Textbox.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Sword.tscn" type="PackedScene" id=12]
 [ext_resource path="res://art/mixkit-retro-game-notification-212.wav" type="AudioStream" id=13]
 [ext_resource path="res://art/Now-We-Ride.mp3" type="AudioStream" id=14]
@@ -527,7 +528,6 @@ position = Vector2( 864, 100 )
 __meta__ = {
 "_edit_group_": true
 }
-player_speed = 0
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 14 )
@@ -545,6 +545,17 @@ stream = ExtResource( 13 )
 
 [node name="HUD" parent="." instance=ExtResource( 8 )]
 
+[node name="ScoreTimer" type="Timer" parent="."]
+
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="Sword" parent="." instance=ExtResource( 12 )]
+position = Vector2( 790, 1511 )
+
+[node name="Diamond" parent="." instance=ExtResource( 10 )]
+position = Vector2( 2066, 366 )
+
 [node name="game_over" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -559,18 +570,9 @@ margin_right = 896.0
 margin_bottom = 1320.0
 color = Color( 0.0901961, 0.0196078, 0.180392, 0.352941 )
 
-[node name="ScoreTimer" type="Timer" parent="."]
+[node name="Pause" parent="." instance=ExtResource( 6 )]
 
-[node name="StartTimer" type="Timer" parent="."]
-wait_time = 2.0
-
-[node name="Sword" parent="." instance=ExtResource( 12 )]
-position = Vector2( 790, 1511 )
-
-[node name="CanvasLayer" parent="." instance=ExtResource( 6 )]
-
-[node name="Diamond" parent="." instance=ExtResource( 10 )]
-position = Vector2( 2066, 366 )
+[node name="canvas_layer" parent="." instance=ExtResource( 11 )]
 
 [connection signal="end_game" from="Path2D/PathFollow2D/Enemy" to="." method="_on_Enemy_end_game"]
 [connection signal="start_game" from="HUD" to="." method="_on_HUD_start_game"]

@@ -660,7 +660,7 @@ position = Vector2( 2, 0 )
 curve = SubResource( 2 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Enemies/Path2D"]
-position = Vector2( 1244, 1576 )
+position = Vector2( 1246, 1337 )
 rotate = false
 loop = false
 
@@ -772,6 +772,16 @@ stream = ExtResource( 13 )
 
 [node name="HUD" parent="." instance=ExtResource( 8 )]
 
+[node name="ScoreTimer" type="Timer" parent="."]
+
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="Sword" parent="." instance=ExtResource( 12 )]
+position = Vector2( 850, 500 )
+
+[node name="Pause" parent="." instance=ExtResource( 6 )]
+
 [node name="game_over" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -787,16 +797,6 @@ margin_left = -390.0
 margin_right = 554.0
 margin_bottom = 1758.0
 color = Color( 0.0901961, 0.0196078, 0.180392, 0.352941 )
-
-[node name="ScoreTimer" type="Timer" parent="."]
-
-[node name="StartTimer" type="Timer" parent="."]
-wait_time = 2.0
-
-[node name="Sword" parent="." instance=ExtResource( 12 )]
-position = Vector2( 850, 500 )
-
-[node name="CanvasLayer" parent="." instance=ExtResource( 6 )]
 
 [connection signal="end_game" from="Enemies/Path2D/PathFollow2D/Enemy" to="." method="_on_Enemy_end_game"]
 [connection signal="end_game" from="Enemies/Path2D2/PathFollow2D/Enemy" to="." method="_on_Enemy_end_game"]
