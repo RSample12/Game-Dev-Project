@@ -1,7 +1,7 @@
 extends Node
 
 var score
-
+var scene = preload("res://Textbox.tscn")
 
 func _ready():
 	#$Music.play()
@@ -15,6 +15,9 @@ func new_game():
 	$Music.play()
 	$HUD.update_score(score)
 	$HUD.show_message("")
+	
+	var instance = scene.instance()
+	add_child(instance)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
