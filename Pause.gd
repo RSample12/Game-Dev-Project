@@ -22,6 +22,5 @@ func _on_back_button_pressed():
 
 
 func _on_exit_pressed():
+	get_tree().paused = false
 	get_tree().change_scene("res://Level_select.tscn")
-	yield(get_tree().create_timer(3), "timeout")
-	get_tree().reload_current_scene()
