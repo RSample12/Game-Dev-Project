@@ -64,3 +64,8 @@ func _on_Text_trigger_body_entered(body):
 		add_child(instance)
 		yield(get_tree().create_timer(3), "timeout")
 		get_tree().paused = false
+
+
+func _on_Crown_treasure_collected():
+	$LevelWon.play()
+	game_over()
