@@ -9,11 +9,11 @@ func _ready():
 	hide()
 	
 func _process(delta):
-	player_speed = 125
+	player_speed = 200
 	
 	var movement_direction := Vector2.ZERO
 	if Input.is_action_pressed("walk"):
-		player_speed = 60
+		player_speed = 75
 		
 	# Player Anim
 	if Input.is_action_pressed("move_right"):

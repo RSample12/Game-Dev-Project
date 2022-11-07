@@ -16,9 +16,6 @@ func new_game():
 	$HUD.update_score(score)
 	$HUD.show_message("")
 	
-	var instance = scene.instance()
-	add_child(instance)
-	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
@@ -58,3 +55,12 @@ func _on_Diamond_jewel_collected():
 
 func _on_Diamond_body_entered(body):
 	pass # Replace with function body.
+
+
+func _on_Text_trigger_body_entered(body):
+	if "Player" in body.name:
+		get_tree().paused = true
+		var instance = scene.instance()
+		add_child(instance)
+		yield(get_tree().create_timer(3), "timeout")
+		get_tree().paused = false

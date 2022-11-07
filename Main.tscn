@@ -10,7 +10,6 @@
 [ext_resource path="res://HUD.tscn" type="PackedScene" id=8]
 [ext_resource path="res://dungeon_/dungeon_/dungeon_.png" type="Texture" id=9]
 [ext_resource path="res://Diamond.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Textbox.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Sword.tscn" type="PackedScene" id=12]
 [ext_resource path="res://art/mixkit-retro-game-notification-212.wav" type="AudioStream" id=13]
 [ext_resource path="res://art/Now-We-Ride.mp3" type="AudioStream" id=14]
@@ -420,11 +419,14 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 511, 1403, 0, 0, 0, 0, 514, 593 )
 }
 
+[sub_resource type="RectangleShape2D" id=16]
+extents = Vector2( 73.5, 34 )
+
 [node name="Main" type="Node"]
 script = ExtResource( 5 )
 
 [node name="bg" type="ColorRect" parent="."]
-margin_left = -3.0
+margin_left = -117.0
 margin_top = -1.0
 margin_right = 1917.0
 margin_bottom = 1919.0
@@ -529,6 +531,12 @@ __meta__ = {
 "_edit_group_": true
 }
 
+[node name="Text_trigger" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Text_trigger"]
+position = Vector2( 863.5, 160 )
+shape = SubResource( 16 )
+
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 14 )
 volume_db = -15.0
@@ -559,6 +567,7 @@ position = Vector2( 2066, 366 )
 [node name="game_over" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = -114.0
 margin_right = 896.0
 margin_bottom = 1320.0
 color = Color( 0, 0, 0, 0.470588 )
@@ -566,15 +575,15 @@ color = Color( 0, 0, 0, 0.470588 )
 [node name="nighttime" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = -118.0
 margin_right = 896.0
 margin_bottom = 1320.0
 color = Color( 0.0901961, 0.0196078, 0.180392, 0.352941 )
 
 [node name="Pause" parent="." instance=ExtResource( 6 )]
 
-[node name="canvas_layer" parent="." instance=ExtResource( 11 )]
-
 [connection signal="end_game" from="Path2D/PathFollow2D/Enemy" to="." method="_on_Enemy_end_game"]
+[connection signal="body_entered" from="Text_trigger" to="." method="_on_Text_trigger_body_entered"]
 [connection signal="start_game" from="HUD" to="." method="_on_HUD_start_game"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
