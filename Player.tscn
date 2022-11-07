@@ -109,6 +109,7 @@ position = Vector2( -1.90735e-06, 0 )
 scale = Vector2( 2.21875, 2.21875 )
 frames = SubResource( 13 )
 animation = "down"
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -123,7 +124,7 @@ current = true
 limit_left = -390
 limit_top = 0
 limit_right = 1420
-limit_bottom = 2300
+limit_bottom = 2600
 limit_smoothed = true
 
 [node name="Area2D" type="Area2D" parent="."]

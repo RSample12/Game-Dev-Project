@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://lvl_button.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Level1.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Enemy.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Retro Textures/png/BRICK_1A.png" type="Texture" id=8]
+[ext_resource path="res://Level2.tscn" type="PackedScene" id=9]
 
 [sub_resource type="DynamicFont" id=5]
 size = 48
@@ -153,6 +154,7 @@ margin_bottom = 259.0
 custom_fonts/font = SubResource( 7 )
 text = "Level 2"
 script = SubResource( 8 )
+scene = ExtResource( 9 )
 
 [node name="castlebreaker" type="Label" parent="."]
 anchor_left = 0.5

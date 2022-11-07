@@ -103,6 +103,6 @@ margin_bottom = 79.0
 text = "Back"
 
 [connection signal="pressed" from="Pause/controls" to="Pause" method="_on_controls_pressed"]
-[connection signal="pressed" from="Pause/exit" to="Pause" method="_on_controls_pressed"]
 [connection signal="pressed" from="Pause/exit" to="Pause" method="_on_exit_pressed"]
+[connection signal="pressed" from="Pause/exit" to="Pause" method="_on_controls_pressed"]
 [connection signal="pressed" from="Pause/back_button" to="Pause" method="_on_back_button_pressed"]
