@@ -611,7 +611,7 @@ position = Vector2( 2, 0 )
 curve = SubResource( 16 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Enemies/Path2D"]
-position = Vector2( 607, 1000 )
+position = Vector2( 604, 982 )
 rotate = false
 loop = false
 
@@ -623,7 +623,7 @@ position = Vector2( 4, 0 )
 curve = SubResource( 2 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Enemies/Path2D2"]
-position = Vector2( 870, 1005 )
+position = Vector2( 857, 588 )
 rotate = false
 loop = false
 
@@ -674,7 +674,7 @@ position = Vector2( 12, 0 )
 curve = SubResource( 20 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Enemies/Path2D6"]
-position = Vector2( 1115, 1655 )
+position = Vector2( 1113, 1330 )
 rotate = false
 loop = false
 
@@ -724,7 +724,7 @@ position = Vector2( 144, 0 )
 curve = SubResource( 24 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Enemies/Path2D10"]
-position = Vector2( 136, 1820 )
+position = Vector2( 138, 1803 )
 rotate = false
 loop = false
 
@@ -737,7 +737,7 @@ position = Vector2( 288, 0 )
 curve = SubResource( 25 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Enemies/Path2D11"]
-position = Vector2( 250, 1816 )
+position = Vector2( 259, 1384 )
 rotate = false
 loop = false
 
@@ -749,7 +749,7 @@ position = Vector2( 576, 0 )
 curve = SubResource( 26 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Enemies/Path2D12"]
-position = Vector2( 1115, 1655 )
+position = Vector2( 395, 1277 )
 rotate = false
 loop = false
 
@@ -762,7 +762,7 @@ position = Vector2( 24, 0 )
 curve = SubResource( 27 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Enemies/Path2D13"]
-position = Vector2( 1113, 1330 )
+position = Vector2( 1095, 1487 )
 rotate = false
 loop = false
 

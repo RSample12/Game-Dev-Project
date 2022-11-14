@@ -3,9 +3,6 @@ extends Node
 var score
 var scene = preload("res://Textbox.tscn")
 
-func _ready():
-	#$Music.play()
-	pass
   
 func new_game():
 	score = 0

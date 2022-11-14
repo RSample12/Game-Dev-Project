@@ -20,21 +20,30 @@ func _process(delta):
 	if Input.is_action_pressed("move_right"):
 		movement_direction.x = 1
 		$AnimatedSprite.animation = "right"
+		$Particles2D.rotation_degrees = 180
 	if Input.is_action_pressed("move_left"):
 		movement_direction.x = -1
 		$AnimatedSprite.animation = "left"
+		$Particles2D.rotation_degrees = 0
 	if Input.is_action_pressed("move_down"):
 		movement_direction.y = 1
 		$AnimatedSprite.animation = "down"
+		$Particles2D.rotation_degrees = 270
 	if Input.is_action_pressed("move_up"):
 		movement_direction.y = -1
 		$AnimatedSprite.animation = "up"
+		$Particles2D.rotation_degrees = 90
 	
 	# Plays animation when player moves
 	if movement_direction.length() > 0:
 		$AnimatedSprite.play()
+		if player_speed == 200:
+			$Particles2D.emitting = true
+		else:
+			$Particles2D.emitting = false
 	else:
 		$AnimatedSprite.stop()
+		$Particles2D.emitting = false
 		
 	movement_direction = movement_direction.normalized()
 # warning-ignore:return_value_discarded

@@ -25,7 +25,7 @@ shader_param/softness = 0.7
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="ColorRect" type="ColorRect" parent="Control"]
+[node name="vignette_shader" type="ColorRect" parent="Control"]
 material = SubResource( 17 )
 anchor_right = 1.0
 anchor_bottom = 1.0
