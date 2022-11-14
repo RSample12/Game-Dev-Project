@@ -16,6 +16,14 @@ func show_game_over():
 	$MessageLabel.show()
 	get_tree().paused = true
 	get_tree().reload_current_scene()
+
+func show_win():
+	show_message("You've found the treasure!")
+	yield($MessageTimer, "timeout")
+	$MessageLabel.text = "Returning to Main Menu..."
+	$MessageLabel.show()
+	yield(get_tree().create_timer(2), "timeout")
+	get_tree().change_scene("res://Level_select.tscn")
 	
 func update_score(score):
 	$ScoreLabel.text = str(score)

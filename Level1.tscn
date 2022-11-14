@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Retro Textures/png/BRICK_1A.png" type="Texture" id=2]
@@ -9,9 +9,12 @@
 [ext_resource path="res://art/gameover.wav" type="AudioStream" id=7]
 [ext_resource path="res://HUD.tscn" type="PackedScene" id=8]
 [ext_resource path="res://dungeon_/dungeon_/dungeon_.png" type="Texture" id=9]
+[ext_resource path="res://art/grass.png" type="Texture" id=10]
+[ext_resource path="res://Box.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Sword.tscn" type="PackedScene" id=12]
 [ext_resource path="res://art/mixkit-retro-game-notification-212.wav" type="AudioStream" id=13]
 [ext_resource path="res://art/Now-We-Ride.mp3" type="AudioStream" id=14]
+[ext_resource path="res://Vignette.tscn" type="PackedScene" id=15]
 
 [sub_resource type="TileSet" id=1]
 0/name = "GrayTiles.png 0"
@@ -443,7 +446,7 @@ var vis_color = Color(.867, .91, .247, .1)
 
 func _ready():
 	if start:
-		start_anim()
+		start_animation()
 		start = false
 	var shape = CircleShape2D.new()
 	shape.radius = detect_radius
@@ -479,7 +482,7 @@ func _on_Visibility_body_entered(body):
 		pathfollow.unit_offset = 0
 		emit_signal(\"end_game\")
 		
-func start_anim():
+func start_animation():
 	if start_anim == 0:
 		$AnimatedSprite.animation = \"up\"
 	elif start_anim == 1:
@@ -630,6 +633,15 @@ __meta__ = {
 "_edit_group_": true
 }
 
+[node name="grass" type="TextureRect" parent="."]
+margin_left = 548.0
+margin_top = 357.0
+margin_right = 1174.0
+margin_bottom = 1569.0
+rect_pivot_offset = Vector2( 426, 1213 )
+texture = ExtResource( 10 )
+stretch_mode = 2
+
 [node name="Floor" type="TileMap" parent="."]
 position = Vector2( -1, 0 )
 tile_set = SubResource( 1 )
@@ -756,6 +768,9 @@ __meta__ = {
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 
+[node name="Box" parent="." instance=ExtResource( 11 )]
+position = Vector2( 519, 382 )
+
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 14 )
 volume_db = -15.0
@@ -770,8 +785,6 @@ volume_db = -5.0
 [node name="LevelWon" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 13 )
 
-[node name="HUD" parent="." instance=ExtResource( 8 )]
-
 [node name="ScoreTimer" type="Timer" parent="."]
 
 [node name="StartTimer" type="Timer" parent="."]
@@ -779,8 +792,6 @@ wait_time = 2.0
 
 [node name="Sword" parent="." instance=ExtResource( 12 )]
 position = Vector2( 850, 500 )
-
-[node name="Pause" parent="." instance=ExtResource( 6 )]
 
 [node name="game_over" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -798,12 +809,18 @@ margin_right = 554.0
 margin_bottom = 1758.0
 color = Color( 0.0901961, 0.0196078, 0.180392, 0.352941 )
 
+[node name="Vignette" parent="." instance=ExtResource( 15 )]
+
+[node name="HUD" parent="." instance=ExtResource( 8 )]
+
+[node name="Pause" parent="." instance=ExtResource( 6 )]
+
 [connection signal="end_game" from="Enemies/Path2D/PathFollow2D/Enemy" to="." method="_on_Enemy_end_game"]
 [connection signal="end_game" from="Enemies/Path2D2/PathFollow2D/Enemy" to="." method="_on_Enemy_end_game"]
 [connection signal="end_game" from="Enemies/Path2D3/PathFollow2D/Enemy" to="." method="_on_Enemy_end_game"]
 [connection signal="end_game" from="Enemies/Path2D4/PathFollow2D/Enemy" to="." method="_on_Enemy_end_game"]
 [connection signal="end_game" from="Enemies/Path2D5/PathFollow2D/Enemy" to="." method="_on_Enemy_end_game"]
-[connection signal="start_game" from="HUD" to="." method="_on_HUD_start_game"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
 [connection signal="treasure_collected" from="Sword" to="." method="_on_Sword_treasure_collected"]
+[connection signal="start_game" from="HUD" to="." method="_on_HUD_start_game"]

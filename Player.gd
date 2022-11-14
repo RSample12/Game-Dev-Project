@@ -8,6 +8,7 @@ var screen_size_y
 func _ready():
 	hide()
 	
+# warning-ignore:unused_argument
 func _process(delta):
 	player_speed = 200
 	
@@ -36,6 +37,7 @@ func _process(delta):
 		$AnimatedSprite.stop()
 		
 	movement_direction = movement_direction.normalized()
+# warning-ignore:return_value_discarded
 	move_and_slide(movement_direction * player_speed)
 	#position.x = clamp(position.x, 0, screen_size_x)
 	#position.y = clamp(position.y, 0, screen_size_y)

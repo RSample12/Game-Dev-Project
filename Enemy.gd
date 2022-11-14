@@ -17,7 +17,7 @@ var vis_color = Color(.867, .91, .247, .1)
 
 func _ready():
 	if start:
-		start_anim()
+		start_animation()
 		start = false
 	var shape = CircleShape2D.new()
 	shape.radius = detect_radius
@@ -60,7 +60,7 @@ func _on_Visibility_body_entered(body):
 	if "Player" in body.name:
 		emit_signal("end_game")
 		
-func start_anim():
+func start_animation():
 	if start_anim == 0:
 		$AnimatedSprite.animation = "up"
 	elif start_anim == 1:

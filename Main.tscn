@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Retro Textures/png/BRICK_1A.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://HUD.tscn" type="PackedScene" id=8]
 [ext_resource path="res://dungeon_/dungeon_/dungeon_.png" type="Texture" id=9]
 [ext_resource path="res://Diamond.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Vignette.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Sword.tscn" type="PackedScene" id=12]
 [ext_resource path="res://art/mixkit-retro-game-notification-212.wav" type="AudioStream" id=13]
 [ext_resource path="res://art/Now-We-Ride.mp3" type="AudioStream" id=14]
@@ -426,8 +427,8 @@ extents = Vector2( 73.5, 34 )
 script = ExtResource( 5 )
 
 [node name="bg" type="ColorRect" parent="."]
-margin_left = -117.0
-margin_top = -1.0
+margin_left = -546.0
+margin_top = -269.0
 margin_right = 1917.0
 margin_bottom = 1919.0
 color = Color( 0.168627, 0.168627, 0.168627, 1 )
@@ -551,8 +552,6 @@ volume_db = -5.0
 [node name="LevelWon" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 13 )
 
-[node name="HUD" parent="." instance=ExtResource( 8 )]
-
 [node name="ScoreTimer" type="Timer" parent="."]
 
 [node name="StartTimer" type="Timer" parent="."]
@@ -567,7 +566,8 @@ position = Vector2( 2066, 366 )
 [node name="game_over" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -114.0
+margin_left = -548.0
+margin_top = -270.0
 margin_right = 896.0
 margin_bottom = 1320.0
 color = Color( 0, 0, 0, 0.470588 )
@@ -575,16 +575,21 @@ color = Color( 0, 0, 0, 0.470588 )
 [node name="nighttime" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -118.0
+margin_left = -546.0
+margin_top = -264.0
 margin_right = 896.0
 margin_bottom = 1320.0
 color = Color( 0.0901961, 0.0196078, 0.180392, 0.352941 )
+
+[node name="Vignette" parent="." instance=ExtResource( 11 )]
+
+[node name="HUD" parent="." instance=ExtResource( 8 )]
 
 [node name="Pause" parent="." instance=ExtResource( 6 )]
 
 [connection signal="end_game" from="Path2D/PathFollow2D/Enemy" to="." method="_on_Enemy_end_game"]
 [connection signal="body_entered" from="Text_trigger" to="." method="_on_Text_trigger_body_entered"]
-[connection signal="start_game" from="HUD" to="." method="_on_HUD_start_game"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
 [connection signal="treasure_collected" from="Sword" to="." method="_on_Sword_treasure_collected"]
+[connection signal="start_game" from="HUD" to="." method="_on_HUD_start_game"]

@@ -27,6 +27,13 @@ func game_over():
 	$HUD.show_game_over()
 	$Player.hide()
 	
+func win_level():
+	$ScoreTimer.stop()
+	$Music.stop()
+	$game_over.show()
+	$HUD.show_win()
+	$Player.hide()
+	
 func _on_StartTimer_timeout():
 	$ScoreTimer.start()
 	score += 1
@@ -45,7 +52,10 @@ func _on_Enemy_end_game():
 
 func _on_Sword_treasure_collected():
 	$LevelWon.play()
-	game_over()
+	#game_over()
+	win_level()
+	#yield(get_tree().create_timer(2), "timeout")
+	#get_tree().change_scene("res://Level_select.tscn")
 
 func _on_Diamond_jewel_collected():
 	$LevelWon.play()
@@ -53,19 +63,18 @@ func _on_Diamond_jewel_collected():
 
 
 
-func _on_Diamond_body_entered(body):
-	pass # Replace with function body.
+#func _on_Diamond_body_entered(body):
+#	pass # Replace with function body.
 
 
 func _on_Text_trigger_body_entered(body):
 	if "Player" in body.name:
-		get_tree().paused = true
+		#get_tree().paused = true
 		var instance = scene.instance()
 		add_child(instance)
-		yield(get_tree().create_timer(3), "timeout")
-		get_tree().paused = false
-
-
+		#yield(get_tree().create_timer(3), "timeout")
+		#get_tree().paused = false
+		
 func _on_Crown_treasure_collected():
 	$LevelWon.play()
 	game_over()

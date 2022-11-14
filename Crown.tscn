@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Area2D.gd" type="Script" id=1]
-[ext_resource path="res://king-crown-clipart-png.png" type="Texture" id=2]
+[ext_resource path="res://Sword.gd" type="Script" id=1]
+[ext_resource path="res://art/king-crown-clipart-png.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 15.5, 20 )
@@ -26,6 +26,8 @@ position = Vector2( 15, 20 )
 scale = Vector2( 0.0857143, 0.105828 )
 frames = SubResource( 2 )
 
-[connection signal="body_shape_entered" from="." to="." method="_on_Area2D_body_shape_entered"]
+[connection signal="area_shape_entered" from="." to="." method="_on_Crown_area_shape_entered"]
+[connection signal="body_entered" from="." to="." method="_on_Crown_body_entered"]
 [connection signal="body_shape_entered" from="." to="." method="_on_Crown_body_shape_entered"]
+[connection signal="body_shape_entered" from="." to="." method="_on_Area2D_body_shape_entered"]
 [connection signal="treasure_collected" from="." to="." method="_on_Area2D_treasure_collected"]

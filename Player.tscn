@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://PIPOYA FREE RPG Character Sprites 32x32/Male/Male 16-1.png" type="Texture" id=1]
 [ext_resource path="res://Player.gd" type="Script" id=2]
 [ext_resource path="res://art/Collision8-Bit.ogg" type="AudioStream" id=3]
+[ext_resource path="res://screen_space_shaders/shaders/vignette.shader" type="Shader" id=4]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
@@ -91,6 +92,13 @@ animations = [ {
 radius = 22.0
 height = 14.0
 
+[sub_resource type="ImageTexture" id=16]
+
+[sub_resource type="ShaderMaterial" id=17]
+render_priority = 10
+shader = ExtResource( 4 )
+shader_param/vignette = SubResource( 16 )
+
 [sub_resource type="CapsuleShape2D" id=15]
 radius = 23.3333
 height = 13.3333
@@ -109,6 +117,7 @@ position = Vector2( -1.90735e-06, 0 )
 scale = Vector2( 2.21875, 2.21875 )
 frames = SubResource( 13 )
 animation = "down"
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -119,6 +128,8 @@ __meta__ = {
 }
 
 [node name="Camera2D" type="Camera2D" parent="."]
+material = SubResource( 17 )
+use_parent_material = true
 current = true
 limit_left = -390
 limit_top = 0
