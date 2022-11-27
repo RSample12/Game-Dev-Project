@@ -421,7 +421,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id=16]
-extents = Vector2( 73.5, 34 )
+extents = Vector2( 73.5, 79.5 )
 
 [node name="Main" type="Node"]
 script = ExtResource( 5 )
@@ -514,6 +514,21 @@ tile_data = PoolIntArray( 131076, 0, 0, 131077, 0, 0, 131078, 0, 0, 131079, 0, 0
 [node name="StartPosition" type="Position2D" parent="."]
 position = Vector2( 864, 98 )
 
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 864, 100 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="nighttime" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -546.0
+margin_top = -264.0
+margin_right = 896.0
+margin_bottom = 1320.0
+color = Color( 0.0901961, 0.0196078, 0.180392, 0.352941 )
+
 [node name="Path2D" type="Path2D" parent="."]
 position = Vector2( 2, 0 )
 curve = SubResource( 2 )
@@ -526,16 +541,10 @@ loop = false
 [node name="Enemy" parent="Path2D/PathFollow2D" instance=ExtResource( 4 )]
 detect_radius = 150
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 864, 100 )
-__meta__ = {
-"_edit_group_": true
-}
-
 [node name="Text_trigger" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Text_trigger"]
-position = Vector2( 863.5, 160 )
+position = Vector2( 863.5, 136.5 )
 shape = SubResource( 16 )
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
@@ -561,6 +570,7 @@ wait_time = 2.0
 position = Vector2( 790, 1511 )
 
 [node name="Diamond" parent="." instance=ExtResource( 10 )]
+visible = false
 position = Vector2( 2066, 366 )
 
 [node name="game_over" type="ColorRect" parent="."]
@@ -572,16 +582,8 @@ margin_right = 896.0
 margin_bottom = 1320.0
 color = Color( 0, 0, 0, 0.470588 )
 
-[node name="nighttime" type="ColorRect" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -546.0
-margin_top = -264.0
-margin_right = 896.0
-margin_bottom = 1320.0
-color = Color( 0.0901961, 0.0196078, 0.180392, 0.352941 )
-
 [node name="Vignette" parent="." instance=ExtResource( 11 )]
+visible = false
 
 [node name="HUD" parent="." instance=ExtResource( 8 )]
 

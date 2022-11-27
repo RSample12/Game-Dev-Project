@@ -1,7 +1,9 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://PIPOYA FREE RPG Character Sprites 32x32/Soldier/Soldier 03-3.png" type="Texture" id=1]
 [ext_resource path="res://Enemy.gd" type="Script" id=2]
+
+[sub_resource type="StreamTexture" id=27]
 
 [sub_resource type="AtlasTexture" id=15]
 flags = 4
@@ -94,6 +96,10 @@ height = 14.0
 scale = Vector2( 0.6, 0.6 )
 script = ExtResource( 2 )
 detect_radius = 75
+
+[node name="Light2D" type="Light2D" parent="."]
+visible = false
+texture = SubResource( 27 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( -1.90735e-06, 0 )

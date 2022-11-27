@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-var enemy_speed = 100
+var enemy_speed = 75
 onready var pathfollow = get_parent()
 var direction = 1
 
@@ -40,6 +40,8 @@ func _process(delta):
 				$AnimatedSprite.animation = "right"
 			if pathfollow.unit_offset >= .46 and self.name == "Enemy7":
 				$AnimatedSprite.animation = "left"
+			if pathfollow.unit_offset >= .44 and self.name == "Enemy8":
+				$AnimatedSprite.animation = "right"
 			pathfollow.offset += enemy_speed * delta
 	else:
 		if pathfollow.unit_offset == 0:
@@ -52,6 +54,8 @@ func _process(delta):
 			if pathfollow.unit_offset <= .4 and self.name == "Enemy6":
 				$AnimatedSprite.animation = "up"
 			if pathfollow.unit_offset <= .46 and self.name == "Enemy7":
+				$AnimatedSprite.animation = "up"
+			if pathfollow.unit_offset <= .44 and self.name == "Enemy8":
 				$AnimatedSprite.animation = "up"
 			pathfollow.offset -= enemy_speed * delta
 			

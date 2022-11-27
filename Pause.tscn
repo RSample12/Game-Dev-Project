@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Pause.gd" type="Script" id=1]
 [ext_resource path="res://fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=2]
@@ -10,12 +10,19 @@ font_path = "res://fonts/Xolonium-Regular.ttf"
 size = 24
 font_data = SubResource( 16 )
 
+[sub_resource type="DynamicFont" id=20]
+size = 24
+font_data = SubResource( 16 )
+
 [sub_resource type="DynamicFont" id=19]
 size = 24
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=18]
 size = 18
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=21]
 font_data = ExtResource( 2 )
 
 [node name="CanvasLayer" type="CanvasLayer"]
@@ -51,7 +58,7 @@ margin_bottom = -36.0
 custom_fonts/font = SubResource( 17 )
 text = "Controls"
 
-[node name="exit" type="Button" parent="Pause"]
+[node name="Objective" type="Button" parent="Pause"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -60,6 +67,18 @@ margin_left = -133.5
 margin_top = -18.0
 margin_right = 133.5
 margin_bottom = 18.0
+custom_fonts/font = SubResource( 20 )
+text = "Objective"
+
+[node name="exit" type="Button" parent="Pause"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -133.5
+margin_top = 35.0
+margin_right = 133.5
+margin_bottom = 71.0
 custom_fonts/font = SubResource( 17 )
 text = "Exit to Menu"
 
@@ -90,6 +109,22 @@ text = "Movement: WASD
 Sneak/ Walk: Shift
 Pause/ Unpause: Esc/ P"
 
+[node name="objective_screen" type="Label" parent="Pause"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -136.0
+margin_top = -75.0
+margin_right = 140.0
+margin_bottom = 21.0
+custom_fonts/font = SubResource( 21 )
+text = "Avoid the guards, and make your 
+way to the treasure! 
+Move on to the next level once 
+you've obtained the treasure."
+
 [node name="back_button" type="Button" parent="Pause"]
 visible = false
 anchor_left = 0.5
@@ -103,6 +138,8 @@ margin_bottom = 79.0
 text = "Back"
 
 [connection signal="pressed" from="Pause/controls" to="Pause" method="_on_controls_pressed"]
+[connection signal="pressed" from="Pause/Objective" to="Pause" method="_on_Objective_pressed"]
+[connection signal="pressed" from="Pause/Objective" to="Pause" method="_on_controls_pressed"]
 [connection signal="pressed" from="Pause/exit" to="Pause" method="_on_exit_pressed"]
 [connection signal="pressed" from="Pause/exit" to="Pause" method="_on_controls_pressed"]
 [connection signal="pressed" from="Pause/back_button" to="Pause" method="_on_back_button_pressed"]

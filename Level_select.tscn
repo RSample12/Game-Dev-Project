@@ -145,7 +145,7 @@ margin_bottom = 164.0
 custom_fonts/font = SubResource( 5 )
 text = "Level 1"
 script = SubResource( 6 )
-scene = ExtResource( 6 )
+scene = ExtResource( 9 )
 
 [node name="Level2" parent="MarginContainer/VBoxContainer" instance=ExtResource( 2 )]
 margin_top = 189.0
@@ -154,7 +154,7 @@ margin_bottom = 259.0
 custom_fonts/font = SubResource( 7 )
 text = "Level 2"
 script = SubResource( 8 )
-scene = ExtResource( 9 )
+scene = ExtResource( 6 )
 
 [node name="castlebreaker" type="Label" parent="."]
 anchor_left = 0.5
