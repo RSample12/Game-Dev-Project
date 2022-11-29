@@ -583,7 +583,6 @@ margin_bottom = 1320.0
 color = Color( 0, 0, 0, 0.470588 )
 
 [node name="Vignette" parent="." instance=ExtResource( 11 )]
-visible = false
 
 [node name="HUD" parent="." instance=ExtResource( 8 )]
 

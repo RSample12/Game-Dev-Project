@@ -685,7 +685,7 @@ _data = {
 script = ExtResource( 5 )
 
 [node name="bg" type="ColorRect" parent="."]
-margin_left = -388.0
+margin_left = -891.0
 margin_top = -222.0
 margin_right = 1556.0
 margin_bottom = 2345.0
@@ -835,7 +835,7 @@ __meta__ = {
 [node name="nighttime" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -390.0
+margin_left = -887.0
 margin_top = -216.0
 margin_right = 554.0
 margin_bottom = 1758.0
@@ -964,7 +964,7 @@ position = Vector2( 850, 500 )
 [node name="game_over" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -390.0
+margin_left = -887.0
 margin_top = -218.0
 margin_right = 540.0
 margin_bottom = 1748.0
