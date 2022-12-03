@@ -15,8 +15,7 @@ func new_game():
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
-#	pass
-
+#	pass"volume_db"
 func game_over():
 	$ScoreTimer.stop()
 	$Music.stop()
@@ -37,7 +36,7 @@ func _on_StartTimer_timeout():
 	$HUD.update_score(score)
 	
 func _on_ScoreTimer_timeout():
-	score += 1
+	score += 1	
 	$HUD.update_score(score)
 
 func _on_HUD_start_game():
@@ -46,10 +45,12 @@ func _on_HUD_start_game():
 func _on_Enemy_end_game():
 	$Gameover.play()
 	game_over()
+	
+	
 
 func _on_Sword_treasure_collected():
 	$LevelWon.play()
-	#game_over()
+	game_over()
 	win_level()
 	#yield(get_tree().create_timer(2), "timeout")
 	#get_tree().change_scene("res://Level_select.tscn")
@@ -57,6 +58,7 @@ func _on_Sword_treasure_collected():
 func _on_Diamond_jewel_collected():
 	$LevelWon.play()
 	game_over()
+	win_level()
 
 
 
@@ -75,3 +77,12 @@ func _on_Text_trigger_body_entered(body):
 func _on_Crown_treasure_collected():
 	$LevelWon.play()
 	game_over()
+	win_level()
+
+
+var num_coins = 0
+var coins_label = "Coins: 0"
+func _on_Coin_collected_coin():
+	num_coins += 1
+	coins_label = "Coins: " + str(num_coins)
+	$Coin_counter/Label.text = coins_label

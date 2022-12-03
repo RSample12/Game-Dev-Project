@@ -85,10 +85,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 4 )
 
-[node name="music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 5 )
-volume_db = -15.0
-
 [node name="bg" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -116,6 +112,9 @@ margin_top = -381.5
 margin_right = 523.5
 margin_bottom = 231.5
 color = Color( 0.0901961, 0.0196078, 0.180392, 0.352941 )
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_left = 0.5

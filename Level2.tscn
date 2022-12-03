@@ -6,14 +6,14 @@
 [ext_resource path="res://Enemy.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Main.gd" type="Script" id=5]
 [ext_resource path="res://Pause.tscn" type="PackedScene" id=6]
-[ext_resource path="res://art/gameover.wav" type="AudioStream" id=7]
+[ext_resource path="res://art/Now-We-Ride.mp3" type="AudioStream" id=7]
 [ext_resource path="res://HUD.tscn" type="PackedScene" id=8]
 [ext_resource path="res://dungeon_/dungeon_/dungeon_.png" type="Texture" id=9]
 [ext_resource path="res://Crown.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Vignette.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Sword.tscn" type="PackedScene" id=12]
-[ext_resource path="res://art/mixkit-retro-game-notification-212.wav" type="AudioStream" id=13]
-[ext_resource path="res://art/Now-We-Ride.mp3" type="AudioStream" id=14]
+[ext_resource path="res://art/gameover.wav" type="AudioStream" id=13]
+[ext_resource path="res://art/mixkit-retro-game-notification-212.wav" type="AudioStream" id=14]
 [ext_resource path="res://art/crates_study_x2.png" type="Texture" id=15]
 [ext_resource path="res://sprites/objects/objects.png" type="Texture" id=16]
 
@@ -631,8 +631,8 @@ script = ExtResource( 5 )
 [node name="bg" type="ColorRect" parent="."]
 margin_left = -572.0
 margin_top = -228.0
-margin_right = 1556.0
-margin_bottom = 2615.0
+margin_right = 1808.0
+margin_bottom = 2797.0
 color = Color( 0.168627, 0.168627, 0.168627, 1 )
 __meta__ = {
 "_edit_group_": true
@@ -646,9 +646,6 @@ margin_bottom = 1900.0
 rect_pivot_offset = Vector2( 850, 189 )
 texture = ExtResource( 2 )
 stretch_mode = 2
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="TextureRect2" type="TextureRect" parent="."]
 margin_left = -150.0
@@ -759,6 +756,15 @@ tile_set = SubResource( 36 )
 format = 1
 tile_data = PoolIntArray( 0, 0, 0, 3932348, 0, 0, 4194492, 0, 0, 4456636, 0, 0, 5242959, 0, 0, 5308429, 0, 0, 5308448, 0, 0, 5308469, 0, 0, 5308575, 0, 0, 5505103, 0, 0, 5570719, 0, 0, 5832863, 0, 0, 10420311, 0, 0, 10420315, 0, 0, 10420319, 0, 0, 11272170, 0, 0, 11534314, 0, 0, 11993255, 0, 0, 11993259, 0, 0, 11993263, 0, 0, 11993267, 0, 0, 12255401, 0, 0, 12255405, 0, 0, 12255409, 0, 0, 12517534, 0, 0, 12779678, 0, 0, 13041822, 0, 0, 13172744, 0, 0, 13172770, 0, 0, 13500489, 0, 0, 13500493, 0, 0, 13762637, 0, 0, 16515070, 0, 0, 16449538, 0, 0 )
 
+[node name="Gameover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+
+[node name="LevelWon" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 864, 100 )
 __meta__ = {
@@ -772,8 +778,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -571.0
 margin_top = -227.0
-margin_right = 533.0
-margin_bottom = 2018.0
+margin_right = 770.0
+margin_bottom = 2199.0
 color = Color( 0.0901961, 0.0196078, 0.180392, 0.352941 )
 
 [node name="StartPosition" type="Position2D" parent="."]
@@ -933,20 +939,6 @@ loop = false
 start_anim = 3
 detect_radius = 125
 
-[node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 14 )
-volume_db = -15.0
-
-[node name="start_music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 14 )
-
-[node name="Gameover" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 7 )
-volume_db = -5.0
-
-[node name="LevelWon" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 13 )
-
 [node name="ScoreTimer" type="Timer" parent="."]
 
 [node name="StartTimer" type="Timer" parent="."]
@@ -960,8 +952,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -572.0
 margin_top = -223.0
-margin_right = 539.0
-margin_bottom = 2011.0
+margin_right = 769.0
+margin_bottom = 2201.0
 color = Color( 0, 0, 0, 0.470588 )
 
 [node name="Vignette" parent="." instance=ExtResource( 11 )]

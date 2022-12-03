@@ -6,13 +6,13 @@
 [ext_resource path="res://Enemy.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Main.gd" type="Script" id=5]
 [ext_resource path="res://Pause.tscn" type="PackedScene" id=6]
-[ext_resource path="res://art/gameover.wav" type="AudioStream" id=7]
+[ext_resource path="res://art/Now-We-Ride.mp3" type="AudioStream" id=7]
 [ext_resource path="res://HUD.tscn" type="PackedScene" id=8]
 [ext_resource path="res://dungeon_/dungeon_/dungeon_.png" type="Texture" id=9]
 [ext_resource path="res://art/grass.png" type="Texture" id=10]
+[ext_resource path="res://art/gameover.wav" type="AudioStream" id=11]
 [ext_resource path="res://Sword.tscn" type="PackedScene" id=12]
 [ext_resource path="res://art/mixkit-retro-game-notification-212.wav" type="AudioStream" id=13]
-[ext_resource path="res://art/Now-We-Ride.mp3" type="AudioStream" id=14]
 [ext_resource path="res://Vignette.tscn" type="PackedScene" id=15]
 [ext_resource path="res://art/crates_study_x2.png" type="Texture" id=16]
 [ext_resource path="res://sprites/objects/objects.png" type="Texture" id=17]
@@ -687,8 +687,8 @@ script = ExtResource( 5 )
 [node name="bg" type="ColorRect" parent="."]
 margin_left = -891.0
 margin_top = -222.0
-margin_right = 1556.0
-margin_bottom = 2345.0
+margin_right = 1785.0
+margin_bottom = 2518.0
 color = Color( 0.168627, 0.168627, 0.168627, 1 )
 __meta__ = {
 "_edit_group_": true
@@ -824,6 +824,15 @@ tile_set = SubResource( 30 )
 format = 1
 tile_data = PoolIntArray( 3342403, 0, 0, 3604547, 0, 0, 3866691, 0, 0, 6291505, 0, 0, 6553649, 0, 0, 17760427, 0, 0, 17760431, 0, 0, 17760435, 0, 0, 18153449, 0, 0, 18415589, 0, 0, 18415593, 0, 0, 20053993, 0, 0, 20316137, 0, 0, 20250672, 0, 0, 20250676, 0, 0, 20250680, 0, 0 )
 
+[node name="Gameover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+
+[node name="LevelWon" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 864, 100 )
 __meta__ = {
@@ -837,8 +846,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -887.0
 margin_top = -216.0
-margin_right = 554.0
-margin_bottom = 1758.0
+margin_right = 755.0
+margin_bottom = 1920.0
 color = Color( 0.0901961, 0.0196078, 0.180392, 0.352941 )
 
 [node name="StartPosition" type="Position2D" parent="."]
@@ -939,20 +948,6 @@ loop = false
 start_anim = 1
 detect_radius = 125
 
-[node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 14 )
-volume_db = -15.0
-
-[node name="start_music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 14 )
-
-[node name="Gameover" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 7 )
-volume_db = -5.0
-
-[node name="LevelWon" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 13 )
-
 [node name="ScoreTimer" type="Timer" parent="."]
 
 [node name="StartTimer" type="Timer" parent="."]
@@ -966,8 +961,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -887.0
 margin_top = -218.0
-margin_right = 540.0
-margin_bottom = 1748.0
+margin_right = 758.0
+margin_bottom = 1908.0
 color = Color( 0, 0, 0, 0.470588 )
 
 [node name="Vignette" parent="." instance=ExtResource( 15 )]
