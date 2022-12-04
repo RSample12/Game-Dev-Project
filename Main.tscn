@@ -640,8 +640,6 @@ wait_time = 2.0
 position = Vector2( 790, 1511 )
 
 [node name="Diamond" parent="." instance=ExtResource( 10 )]
-visible = false
-position = Vector2( 2066, 366 )
 
 [node name="game_over" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -680,4 +678,5 @@ valign = 1
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
 [connection signal="treasure_collected" from="Sword" to="." method="_on_Sword_treasure_collected"]
+[connection signal="treasure_collected" from="Diamond" to="." method="_on_Diamond_treasure_collected"]
 [connection signal="start_game" from="HUD" to="." method="_on_HUD_start_game"]

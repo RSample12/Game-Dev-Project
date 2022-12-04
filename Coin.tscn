@@ -34,7 +34,7 @@ volume_db = 24.0
 position = Vector2( 0.195559, 0.0617582 )
 scale = Vector2( -0.0350959, -0.034469 )
 frames = SubResource( 1 )
-frame = 9
+frame = 6
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

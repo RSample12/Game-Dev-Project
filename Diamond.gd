@@ -1,10 +1,9 @@
 extends Area2D
 
-signal jewel_collected
+signal treasure_collected 
 
 # Called when the node enters the scene tree for the first time.
-
-func _on_Diamond_body_entered(body):
+func _on_Diamond_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
 	if body.is_in_group("player"):
-		emit_signal("jewel_collected")
+		emit_signal("treasure_collected")
 		queue_free()

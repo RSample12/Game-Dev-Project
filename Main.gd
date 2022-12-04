@@ -55,7 +55,7 @@ func _on_Sword_treasure_collected():
 	#yield(get_tree().create_timer(2), "timeout")
 	#get_tree().change_scene("res://Level_select.tscn")
 
-func _on_Diamond_jewel_collected():
+func _on_Diamond_treasure_collected():
 	$LevelWon.play()
 	game_over()
 	win_level()

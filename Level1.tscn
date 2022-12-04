@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=48 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Retro Textures/png/BRICK_1A.png" type="Texture" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://art/gameover.wav" type="AudioStream" id=11]
 [ext_resource path="res://Sword.tscn" type="PackedScene" id=12]
 [ext_resource path="res://art/mixkit-retro-game-notification-212.wav" type="AudioStream" id=13]
+[ext_resource path="res://Diamond.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Vignette.tscn" type="PackedScene" id=15]
 [ext_resource path="res://art/crates_study_x2.png" type="Texture" id=16]
 [ext_resource path="res://sprites/objects/objects.png" type="Texture" id=17]
@@ -970,6 +971,9 @@ color = Color( 0, 0, 0, 0.470588 )
 [node name="HUD" parent="." instance=ExtResource( 8 )]
 
 [node name="Pause" parent="." instance=ExtResource( 6 )]
+
+[node name="Diamond" parent="." instance=ExtResource( 14 )]
+position = Vector2( 175, 785 )
 
 [connection signal="end_game" from="Enemies/Path2D/PathFollow2D/Enemy" to="." method="_on_Enemy_end_game"]
 [connection signal="end_game" from="Enemies/Path2D2/PathFollow2D/Enemy" to="." method="_on_Enemy_end_game"]

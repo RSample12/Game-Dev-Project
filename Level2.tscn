@@ -963,8 +963,7 @@ color = Color( 0, 0, 0, 0.470588 )
 [node name="Pause" parent="." instance=ExtResource( 6 )]
 
 [node name="Crown" parent="." instance=ExtResource( 10 )]
-visible = false
-position = Vector2( 1295, 1227 )
+position = Vector2( 1057, 226 )
 
 [connection signal="end_game" from="Enemies/Path2D/PathFollow2D/Enemy" to="." method="_on_Enemy_end_game"]
 [connection signal="end_game" from="Enemies/Path2D2/PathFollow2D/Enemy" to="." method="_on_Enemy_end_game"]
