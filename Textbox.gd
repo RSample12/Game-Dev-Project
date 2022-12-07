@@ -5,7 +5,9 @@ export(float) var text_speed = .05
 var dialog = [
 	{"Name": "Thief", "Text": "Finally!, I've made it inside the castle..."},
 	{"Name": "Thief", "Text": "Use WASD to move and avoid the guards..."},
+	{"Name": "Thief", "Text": "I can sneak or walk with shift..."},
 	{"Name": "Thief", "Text": "I can also pause with escape, or p..."},
+	{"Name": "Thief", "Text": "My mission is to escape with the king's sword, but I have room for gold and other treasures if I come across them..."},
 	{"Name": "Thief", "Text": "Now where did they hide the treasure?..."}
 ]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Retro Textures/png/BRICK_1A.png" type="Texture" id=2]
@@ -15,7 +15,6 @@
 [ext_resource path="res://art/mixkit-retro-game-notification-212.wav" type="AudioStream" id=13]
 [ext_resource path="res://art/gameover.wav" type="AudioStream" id=14]
 [ext_resource path="res://Coin.tscn" type="PackedScene" id=15]
-[ext_resource path="res://fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=16]
 
 [sub_resource type="TileSet" id=1]
 0/name = "GrayTiles.png 0"
@@ -479,10 +478,6 @@ _data = {
 [sub_resource type="RectangleShape2D" id=16]
 extents = Vector2( 73.5, 79.5 )
 
-[sub_resource type="DynamicFont" id=17]
-size = 24
-font_data = ExtResource( 16 )
-
 [node name="Main" type="Node"]
 script = ExtResource( 5 )
 
@@ -604,6 +599,9 @@ script = SubResource( 20 )
 [node name="Coin" parent="." instance=ExtResource( 15 )]
 position = Vector2( 509, 200 )
 
+[node name="Sword" parent="." instance=ExtResource( 12 )]
+position = Vector2( 790, 1511 )
+
 [node name="nighttime" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -636,10 +634,8 @@ shape = SubResource( 16 )
 [node name="StartTimer" type="Timer" parent="."]
 wait_time = 2.0
 
-[node name="Sword" parent="." instance=ExtResource( 12 )]
-position = Vector2( 790, 1511 )
-
 [node name="Diamond" parent="." instance=ExtResource( 10 )]
+visible = false
 
 [node name="game_over" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -656,27 +652,14 @@ color = Color( 0, 0, 0, 0.470588 )
 
 [node name="Pause" parent="." instance=ExtResource( 6 )]
 
-[node name="Coin_counter" type="CanvasLayer" parent="."]
-
-[node name="Label" type="Label" parent="Coin_counter"]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -129.0
-margin_right = -24.0
-margin_bottom = 30.0
-custom_fonts/font = SubResource( 17 )
-text = "Coins: 0"
-align = 1
-valign = 1
-
 [connection signal="collected_coin" from="Coin4" to="." method="_on_Coin_collected_coin"]
 [connection signal="collected_coin" from="Coin3" to="." method="_on_Coin_collected_coin"]
 [connection signal="collected_coin" from="Coin2" to="." method="_on_Coin_collected_coin"]
 [connection signal="collected_coin" from="Coin" to="." method="_on_Coin_collected_coin"]
+[connection signal="treasure_collected" from="Sword" to="." method="_on_Sword_treasure_collected"]
 [connection signal="end_game" from="Path2D/PathFollow2D/Enemy" to="." method="_on_Enemy_end_game"]
 [connection signal="body_entered" from="Text_trigger" to="." method="_on_Text_trigger_body_entered"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
-[connection signal="treasure_collected" from="Sword" to="." method="_on_Sword_treasure_collected"]
 [connection signal="treasure_collected" from="Diamond" to="." method="_on_Diamond_treasure_collected"]
 [connection signal="start_game" from="HUD" to="." method="_on_HUD_start_game"]

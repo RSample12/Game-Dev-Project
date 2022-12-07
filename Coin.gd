@@ -6,8 +6,9 @@ func _ready():
 	$AnimatedSprite.play()
 	
 	
-func _on_Area2D_body_entered(body):
+func _on_Coin_body_entered(body):
 	if "Player" in body.name:
+		$CollisionShape2D.set_deferred("disabled", true)
 		emit_signal("collected_coin")
 		$coin_pickup.play()
 		$AnimatedSprite.hide()

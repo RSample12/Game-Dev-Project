@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Retro Textures/png/BRICK_1A.png" type="Texture" id=2]
@@ -8,7 +8,7 @@
 [ext_resource path="res://Pause.tscn" type="PackedScene" id=6]
 [ext_resource path="res://art/Now-We-Ride.mp3" type="AudioStream" id=7]
 [ext_resource path="res://HUD.tscn" type="PackedScene" id=8]
-[ext_resource path="res://dungeon_/dungeon_/dungeon_.png" type="Texture" id=9]
+[ext_resource path="res://Coin_counter.tscn" type="PackedScene" id=9]
 [ext_resource path="res://art/grass.png" type="Texture" id=10]
 [ext_resource path="res://art/gameover.wav" type="AudioStream" id=11]
 [ext_resource path="res://Sword.tscn" type="PackedScene" id=12]
@@ -17,6 +17,7 @@
 [ext_resource path="res://Vignette.tscn" type="PackedScene" id=15]
 [ext_resource path="res://art/crates_study_x2.png" type="Texture" id=16]
 [ext_resource path="res://sprites/objects/objects.png" type="Texture" id=17]
+[ext_resource path="res://Coin.tscn" type="PackedScene" id=18]
 
 [sub_resource type="TileSet" id=1]
 0/name = "GrayTiles.png 0"
@@ -360,64 +361,6 @@ points = PoolVector2Array( 9.96097, 9.95448, 9.96097, 0.587158, 22.2354, 0.74867
 15/shapes = [  ]
 15/z_index = 0
 
-[sub_resource type="TileSet" id=14]
-0/name = "RedCarpet"
-0/texture = ExtResource( 9 )
-0/tex_offset = Vector2( 0, 0 )
-0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 169, 57, 31, 31 )
-0/tile_mode = 0
-0/occluder_offset = Vector2( 0, 0 )
-0/navigation_offset = Vector2( 0, 0 )
-0/shape_offset = Vector2( 0, 0 )
-0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape_one_way = false
-0/shape_one_way_margin = 0.0
-0/shapes = [  ]
-0/z_index = 0
-1/name = "BlueCarpet"
-1/texture = ExtResource( 9 )
-1/tex_offset = Vector2( 0, 0 )
-1/modulate = Color( 1, 1, 1, 1 )
-1/region = Rect2( 169, 153, 31, 31 )
-1/tile_mode = 0
-1/occluder_offset = Vector2( 0, 0 )
-1/navigation_offset = Vector2( 0, 0 )
-1/shape_offset = Vector2( 0, 0 )
-1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-1/shape_one_way = false
-1/shape_one_way_margin = 0.0
-1/shapes = [  ]
-1/z_index = 0
-2/name = "Torch"
-2/texture = ExtResource( 9 )
-2/tex_offset = Vector2( 0, 0 )
-2/modulate = Color( 1, 1, 1, 1 )
-2/region = Rect2( 48, 96, 16, 16 )
-2/tile_mode = 0
-2/occluder_offset = Vector2( 0, 0 )
-2/navigation_offset = Vector2( 0, 0 )
-2/shape_offset = Vector2( 0, 0 )
-2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-2/shape_one_way = false
-2/shape_one_way_margin = 0.0
-2/shapes = [  ]
-2/z_index = 0
-3/name = "dungeon_.png 3"
-3/texture = ExtResource( 9 )
-3/tex_offset = Vector2( 0, 0 )
-3/modulate = Color( 1, 1, 1, 1 )
-3/region = Rect2( 240, 16, 16, 16 )
-3/tile_mode = 0
-3/occluder_offset = Vector2( 0, 0 )
-3/navigation_offset = Vector2( 0, 0 )
-3/shape_offset = Vector2( 0, 0 )
-3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-3/shape_one_way = false
-3/shape_one_way_margin = 0.0
-3/shapes = [  ]
-3/z_index = 0
-
 [sub_resource type="ConvexPolygonShape2D" id=23]
 points = PoolVector2Array( 4.97746, 12.5327, 18.4664, 4.62543, 34.9787, 8.3465, 41.2581, 18.3469, 42.1883, 37.6501, 36.3741, 46.7202, 33.5833, 55.7904, 30.0948, 60.9069, 12.4196, 60.6743, 9.86139, 51.139, 1.0238, 37.8826 )
 
@@ -565,6 +508,60 @@ points = PoolVector2Array( 2.80554, 1.5, 253.5, 3.58331, 255.583, 252.194, 0.722
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 0/z_index = 0
+
+[sub_resource type="GDScript" id=32]
+script/source = "extends Area2D
+
+signal collected_coin
+
+func _ready():
+	$AnimatedSprite.play()
+	
+	
+func _on_Area2D_body_entered(body):
+	if \"Player\" in body.name:
+		emit_signal(\"collected_coin\")
+		$coin_pickup.play()
+		$AnimatedSprite.hide()
+		yield(get_tree().create_timer(1), \"timeout\")
+		queue_free()
+"
+
+[sub_resource type="GDScript" id=33]
+script/source = "extends Area2D
+
+signal collected_coin
+
+func _ready():
+	$AnimatedSprite.play()
+	
+	
+func _on_Area2D_body_entered(body):
+	if \"Player\" in body.name:
+		emit_signal(\"collected_coin\")
+		$coin_pickup.play()
+		$AnimatedSprite.hide()
+		yield(get_tree().create_timer(1), \"timeout\")
+		queue_free()
+"
+
+[sub_resource type="GDScript" id=34]
+script/source = "extends Area2D
+
+signal collected_coin
+
+func _ready():
+	$AnimatedSprite.play()
+	
+	
+func _on_Area2D_body_entered(body):
+	if \"Player\" in body.name:
+		emit_signal(\"collected_coin\")
+		$coin_pickup.play()
+		$AnimatedSprite.hide()
+		yield(get_tree().create_timer(1), \"timeout\")
+		queue_free()
+"
 
 [sub_resource type="Curve2D" id=2]
 _data = {
@@ -805,14 +802,6 @@ cell_size = Vector2( 32, 32 )
 format = 1
 tile_data = PoolIntArray( 12, 3, 0, 13, 12, 0, 14, 2, 0, 65548, 7, 0, 65550, 7, 0, 131084, 7, 0, 131086, 7, 0, 196614, 3, 0, 196615, 6, 0, 196616, 6, 0, 196617, 6, 0, 196618, 6, 0, 196619, 6, 0, 196620, 5, 0, 196622, 4, 0, 196623, 6, 0, 196624, 6, 0, 196625, 6, 0, 196626, 6, 0, 196627, 6, 0, 196628, 2, 0, 262150, 7, 0, 262164, 7, 0, 327686, 7, 0, 327688, 3, 0, 327689, 6, 0, 327690, 6, 0, 327691, 6, 0, 327692, 6, 0, 327693, 6, 0, 327694, 6, 0, 327695, 6, 0, 327696, 6, 0, 327697, 6, 0, 327698, 2, 0, 327700, 7, 0, 393222, 7, 0, 393224, 7, 0, 393234, 7, 0, 393236, 7, 0, 458753, 3, 0, 458754, 6, 0, 458755, 6, 0, 458756, 6, 0, 458757, 2, 0, 458758, 7, 0, 458760, 7, 0, 458770, 7, 0, 458772, 7, 0, 524289, 7, 0, 524293, 7, 0, 524294, 7, 0, 524296, 7, 0, 524306, 7, 0, 524308, 7, 0, 589825, 7, 0, 589829, 7, 0, 589830, 7, 0, 589832, 7, 0, 589842, 7, 0, 589844, 7, 0, 655361, 7, 0, 655365, 4, 0, 655366, 5, 0, 655368, 7, 0, 655378, 7, 0, 655380, 7, 0, 720897, 7, 0, 720904, 7, 0, 720914, 7, 0, 720916, 7, 0, 786433, 7, 0, 786437, 3, 0, 786438, 2, 0, 786440, 7, 0, 786450, 7, 0, 786452, 7, 0, 851969, 7, 0, 851973, 7, 0, 851974, 7, 0, 851976, 7, 0, 851986, 7, 0, 851988, 7, 0, 917505, 7, 0, 917509, 7, 0, 917510, 7, 0, 917512, 7, 0, 917522, 7, 0, 917524, 7, 0, 983041, 4, 0, 983042, 6, 0, 983043, 6, 0, 983044, 6, 0, 983045, 5, 0, 983046, 7, 0, 983048, 7, 0, 983058, 7, 0, 983060, 7, 0, 1048582, 7, 0, 1048584, 7, 0, 1048594, 7, 0, 1048596, 7, 0, 1114118, 7, 0, 1114120, 7, 0, 1114130, 7, 0, 1114132, 7, 0, 1179654, 7, 0, 1179656, 7, 0, 1179666, 7, 0, 1179668, 7, 0, 1245190, 7, 0, 1245192, 11, 0, 1245193, 6, 0, 1245194, 6, 0, 1245195, 6, 0, 1245196, 5, 0, 1245198, 4, 0, 1245199, 6, 0, 1245200, 6, 0, 1245201, 6, 0, 1245202, 9, 0, 1245204, 7, 0, 1310726, 7, 0, 1310728, 7, 0, 1310738, 7, 0, 1310740, 7, 0, 1376262, 7, 0, 1376264, 7, 0, 1376276, 7, 0, 1441798, 7, 0, 1441800, 7, 0, 1441812, 7, 0, 1507334, 7, 0, 1507336, 7, 0, 1507346, 7, 0, 1507348, 7, 0, 1638395, 3, 0, 1638396, 6, 0, 1638397, 6, 0, 1638398, 6, 0, 1638399, 6, 0, 1572864, 6, 0, 1572865, 6, 0, 1572866, 6, 0, 1572867, 6, 0, 1572868, 6, 0, 1572869, 6, 0, 1572870, 5, 0, 1572872, 4, 0, 1572873, 6, 0, 1572874, 6, 0, 1572875, 6, 0, 1572876, 6, 0, 1572877, 6, 0, 1572878, 6, 0, 1572879, 6, 0, 1572880, 6, 0, 1572881, 6, 0, 1572882, 5, 0, 1572884, 7, 0, 1703931, 7, 0, 1638420, 7, 0, 1769467, 7, 0, 1769469, 3, 0, 1769470, 6, 0, 1769471, 6, 0, 1703936, 6, 0, 1703937, 6, 0, 1703938, 6, 0, 1703939, 6, 0, 1703940, 6, 0, 1703941, 6, 0, 1703942, 6, 0, 1703943, 6, 0, 1703944, 6, 0, 1703945, 6, 0, 1703946, 6, 0, 1703947, 6, 0, 1703948, 6, 0, 1703949, 6, 0, 1703950, 6, 0, 1703951, 6, 0, 1703952, 6, 0, 1703953, 6, 0, 1703954, 2, 0, 1703956, 7, 0, 1835003, 7, 0, 1835005, 7, 0, 1769490, 7, 0, 1769492, 7, 0, 1900539, 7, 0, 1835026, 7, 0, 1835028, 7, 0, 1966075, 7, 0, 1900562, 7, 0, 1900564, 7, 0, 2031611, 7, 0, 2031613, 7, 0, 1966098, 7, 0, 1966100, 7, 0, 2097147, 7, 0, 2097149, 4, 0, 2097150, 6, 0, 2097151, 6, 0, 2031616, 6, 0, 2031617, 6, 0, 2031618, 6, 0, 2031619, 6, 0, 2031620, 6, 0, 2031621, 6, 0, 2031624, 6, 0, 2031625, 6, 0, 2031626, 6, 0, 2031627, 6, 0, 2031628, 6, 0, 2031629, 6, 0, 2031630, 6, 0, 2031631, 6, 0, 2031632, 6, 0, 2031633, 6, 0, 2031634, 5, 0, 2031636, 7, 0, 2162683, 7, 0, 2097172, 7, 0, 2228219, 4, 0, 2228220, 6, 0, 2228221, 6, 0, 2228222, 6, 0, 2228223, 6, 0, 2162688, 6, 0, 2162689, 6, 0, 2162690, 6, 0, 2162691, 6, 0, 2162692, 6, 0, 2162693, 6, 0, 2162694, 6, 0, 2162695, 6, 0, 2162696, 6, 0, 2162697, 6, 0, 2162698, 6, 0, 2162699, 6, 0, 2162700, 6, 0, 2162701, 6, 0, 2162702, 6, 0, 2162703, 6, 0, 2162704, 6, 0, 2162705, 6, 0, 2162706, 6, 0, 2162707, 6, 0, 2162708, 5, 0 )
 
-[node name="Decor" type="TileMap" parent="."]
-visible = false
-scale = Vector2( 2, 2 )
-tile_set = SubResource( 14 )
-cell_size = Vector2( 32, 32 )
-format = 1
-tile_data = PoolIntArray( 131076, 0, 0, 131077, 0, 0, 131078, 0, 0, 131079, 0, 0, 131080, 0, 0, 131081, 0, 0, 131082, 0, 0, 131083, 0, 0, 196612, 0, 0, 196613, 0, 0, 196614, 0, 0, 196615, 0, 0, 196616, 0, 0, 196617, 0, 0, 196618, 0, 0, 196619, 0, 0, 262148, 0, 0, 262149, 0, 0, 262150, 0, 0, 262151, 0, 0, 262152, 0, 0, 262153, 0, 0, 262154, 0, 0, 262155, 0, 0, 327684, 0, 0, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 327688, 0, 0, 327689, 0, 0, 327690, 0, 0, 327691, 0, 0, 393220, 0, 0, 393221, 0, 0, 393222, 0, 0, 393223, 0, 0, 393224, 0, 0, 393225, 0, 0, 393226, 0, 0, 393227, 0, 0, 458759, 1, 0, 458760, 1, 0, 524295, 1, 0, 524296, 1, 0, 589831, 1, 0, 589832, 1, 0, 655367, 1, 0, 655368, 1, 0, 720903, 1, 0, 720904, 1, 0, 786439, 1, 0, 786440, 1, 0, 851975, 1, 0, 851976, 1, 0, 917511, 1, 0, 917512, 1, 0, 983047, 1, 0, 983048, 1, 0, 1048583, 1, 0, 1048584, 1, 0, 1114119, 1, 0, 1114120, 1, 0, 1179655, 1, 0, 1179656, 1, 0, 1245191, 1, 0, 1245192, 1, 0, 1310727, 1, 0, 1310728, 1, 0, 1376263, 1, 0, 1376264, 1, 0, 1441799, 1, 0, 1441800, 1, 0, 1507335, 1, 0, 1507336, 1, 0, 1572868, 0, 0, 1572869, 0, 0, 1572870, 0, 0, 1572871, 0, 0, 1572872, 0, 0, 1572873, 0, 0, 1572874, 0, 0, 1572875, 0, 0, 1638404, 0, 0, 1638405, 0, 0, 1638406, 0, 0, 1638407, 0, 0, 1638408, 0, 0, 1638409, 0, 0, 1638410, 0, 0, 1638411, 0, 0, 1703940, 0, 0, 1703941, 0, 0, 1703942, 0, 0, 1703943, 0, 0, 1703944, 0, 0, 1703945, 0, 0, 1703946, 0, 0, 1703947, 0, 0, 1769476, 0, 0, 1769477, 0, 0, 1769478, 0, 0, 1769479, 0, 0, 1769480, 0, 0, 1769481, 0, 0, 1769482, 0, 0, 1769483, 0, 0 )
-
 [node name="Trees" type="TileMap" parent="."]
 scale = Vector2( 2, 2 )
 tile_set = SubResource( 28 )
@@ -841,6 +830,57 @@ __meta__ = {
 }
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="Diamond" parent="." instance=ExtResource( 14 )]
+position = Vector2( 195, 922 )
+
+[node name="Sword" parent="." instance=ExtResource( 12 )]
+position = Vector2( 850, 500 )
+
+[node name="Coin9" parent="." instance=ExtResource( 18 )]
+position = Vector2( 1130, 419 )
+script = SubResource( 32 )
+
+[node name="Coin10" parent="." instance=ExtResource( 18 )]
+position = Vector2( 1246, 2086 )
+script = SubResource( 33 )
+
+[node name="Coin11" parent="." instance=ExtResource( 18 )]
+position = Vector2( 590, 1302 )
+script = SubResource( 34 )
+
+[node name="Coin12" parent="." instance=ExtResource( 18 )]
+position = Vector2( -213, 1649 )
+
+[node name="Coin5" parent="." instance=ExtResource( 18 )]
+position = Vector2( 1246, 772 )
+script = SubResource( 32 )
+
+[node name="Coin6" parent="." instance=ExtResource( 18 )]
+position = Vector2( -221, 2088 )
+script = SubResource( 33 )
+
+[node name="Coin7" parent="." instance=ExtResource( 18 )]
+position = Vector2( 1121, 1796 )
+script = SubResource( 34 )
+
+[node name="Coin8" parent="." instance=ExtResource( 18 )]
+position = Vector2( 670, 862 )
+
+[node name="Coin4" parent="." instance=ExtResource( 18 )]
+position = Vector2( 901, 1639 )
+script = SubResource( 32 )
+
+[node name="Coin3" parent="." instance=ExtResource( 18 )]
+position = Vector2( 928, 738 )
+script = SubResource( 33 )
+
+[node name="Coin2" parent="." instance=ExtResource( 18 )]
+position = Vector2( 272, 632 )
+script = SubResource( 34 )
+
+[node name="Coin" parent="." instance=ExtResource( 18 )]
+position = Vector2( 1253, 297 )
 
 [node name="nighttime" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -954,9 +994,6 @@ detect_radius = 125
 [node name="StartTimer" type="Timer" parent="."]
 wait_time = 2.0
 
-[node name="Sword" parent="." instance=ExtResource( 12 )]
-position = Vector2( 850, 500 )
-
 [node name="game_over" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -972,9 +1009,9 @@ color = Color( 0, 0, 0, 0.470588 )
 
 [node name="Pause" parent="." instance=ExtResource( 6 )]
 
-[node name="Diamond" parent="." instance=ExtResource( 14 )]
-position = Vector2( 175, 785 )
+[node name="Coin_counter" parent="." instance=ExtResource( 9 )]
 
+[connection signal="treasure_collected" from="Sword" to="." method="_on_Sword_treasure_collected"]
 [connection signal="end_game" from="Enemies/Path2D/PathFollow2D/Enemy" to="." method="_on_Enemy_end_game"]
 [connection signal="end_game" from="Enemies/Path2D2/PathFollow2D/Enemy" to="." method="_on_Enemy_end_game"]
 [connection signal="end_game" from="Enemies/Path2D3/PathFollow2D/Enemy" to="." method="_on_Enemy_end_game"]
@@ -982,5 +1019,4 @@ position = Vector2( 175, 785 )
 [connection signal="end_game" from="Enemies/Path2D5/PathFollow2D/Enemy" to="." method="_on_Enemy_end_game"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
-[connection signal="treasure_collected" from="Sword" to="." method="_on_Sword_treasure_collected"]
 [connection signal="start_game" from="HUD" to="." method="_on_HUD_start_game"]
